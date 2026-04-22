@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,290 +10,293 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
-    :root {
-      --purple-bg: #EEEDFE;
-      --purple-border: #534AB7;
-      --purple-head: #3C3489;
-      --purple-sub: #534AB7;
-      --teal-bg: #E1F5EE;
-      --teal-border: #0F6E56;
-      --teal-head: #085041;
-      --teal-sub: #0F6E56;
-      --gray-bg: #F1EFE8;
-      --gray-border: #5F5E5A;
-      --gray-head: #444441;
-      --gray-sub: #5F5E5A;
-      --amber-bg: #FAEEDA;
-      --amber-border: #854F0B;
-      --amber-head: #633806;
-      --amber-sub: #854F0B;
-      --coral-bg: #FAECE7;
-      --coral-border: #993C1D;
-      --coral-head: #712B13;
-      --coral-sub: #993C1D;
-      --pink-bg: #FBEAF0;
-      --pink-border: #993556;
-      --pink-head: #72243E;
-      --pink-sub: #993556;
-      --page-bg: #F7F6F2;
-      --year-border: #c8c6bc;
-      --sem-border: #dedad2;
-      --text-dark: #1a1a18;
-      --text-mid: #44443f;
-      --ff: 'IBM Plex Sans', sans-serif;
-      --fm: 'IBM Plex Mono', monospace;
-    }
+```
+:root {
+  --purple-bg: #EEEDFE;
+  --purple-border: #534AB7;
+  --purple-head: #3C3489;
+  --purple-sub: #534AB7;
+  --teal-bg: #E1F5EE;
+  --teal-border: #0F6E56;
+  --teal-head: #085041;
+  --teal-sub: #0F6E56;
+  --gray-bg: #F1EFE8;
+  --gray-border: #5F5E5A;
+  --gray-head: #444441;
+  --gray-sub: #5F5E5A;
+  --amber-bg: #FAEEDA;
+  --amber-border: #854F0B;
+  --amber-head: #633806;
+  --amber-sub: #854F0B;
+  --coral-bg: #FAECE7;
+  --coral-border: #993C1D;
+  --coral-head: #712B13;
+  --coral-sub: #993C1D;
+  --pink-bg: #FBEAF0;
+  --pink-border: #993556;
+  --pink-head: #72243E;
+  --pink-sub: #993556;
+  --page-bg: #F7F6F2;
+  --year-border: #c8c6bc;
+  --sem-border: #dedad2;
+  --text-dark: #1a1a18;
+  --text-mid: #44443f;
+  --ff: 'IBM Plex Sans', sans-serif;
+  --fm: 'IBM Plex Mono', monospace;
+}
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: var(--ff);
-      background: var(--page-bg);
-      color: var(--text-dark);
-      min-height: 100vh;
-    }
+body {
+  font-family: var(--ff);
+  background: var(--page-bg);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
 
-    /* ── HEADER ─────────────────────────────────────── */
-    header {
-      padding: 20px 16px 16px;
-      border-bottom: 1px solid var(--year-border);
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+/* ── HEADER ─────────────────────────────────────── */
+header {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--year-border);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-    header h1 {
-      font-size: clamp(15px, 4vw, 19px);
-      font-weight: 600;
-      letter-spacing: -0.3px;
-      color: var(--text-dark);
-    }
+header h1 {
+  font-size: clamp(15px, 4vw, 19px);
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-dark);
+}
 
-    header span {
-      font-family: var(--fm);
-      font-size: 11px;
-      color: var(--text-mid);
-      opacity: .7;
-    }
+header span {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--text-mid);
+  opacity: .7;
+}
 
-    /* ── LEGEND ─────────────────────────────────────── */
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 14px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--sem-border);
-      font-size: 11px;
-      color: var(--text-mid);
-    }
+/* ── LEGEND ─────────────────────────────────────── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--sem-border);
+  font-size: 11px;
+  color: var(--text-mid);
+}
 
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
 
-    /* ── SVG DESKTOP VIEW ────────────────────────────── */
-    .svg-wrap {
-      display: none;
-      padding: 20px;
-      overflow-x: auto;
-    }
+/* ── SVG DESKTOP VIEW ────────────────────────────── */
+.svg-wrap {
+  display: none;
+  padding: 20px;
+  overflow-x: auto;
+}
 
-    .svg-wrap svg {
-      max-width: 100%;
-      height: auto;
-    }
+.svg-wrap svg {
+  max-width: 100%;
+  height: auto;
+}
 
-    /* ── MOBILE CARD VIEW ────────────────────────────── */
-    .card-view {
-      display: block;
-      padding: 12px 12px 32px;
-    }
+/* ── MOBILE CARD VIEW ────────────────────────────── */
+.card-view {
+  display: block;
+  padding: 12px 12px 32px;
+}
 
-    /* Year section */
-    .year-block {
-      border: 1px dashed var(--year-border);
-      border-radius: 12px;
-      margin-bottom: 14px;
-      overflow: hidden;
-    }
+/* Year section */
+.year-block {
+  border: 1px dashed var(--year-border);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
 
-    .year-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-mid);
-      padding: 10px 14px 6px;
-      letter-spacing: .3px;
-      text-transform: uppercase;
-      font-family: var(--fm);
-    }
+.year-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-mid);
+  padding: 10px 14px 6px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  font-family: var(--fm);
+}
 
-    /* Semester section */
-    .sem-block {
-      border-top: 1px solid var(--sem-border);
-      padding: 10px 12px 12px;
-    }
+/* Semester section */
+.sem-block {
+  border-top: 1px solid var(--sem-border);
+  padding: 10px 12px 12px;
+}
 
-    .sem-label {
-      font-size: 10px;
-      color: #888;
-      font-family: var(--fm);
-      margin-bottom: 8px;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
+.sem-label {
+  font-size: 10px;
+  color: #888;
+  font-family: var(--fm);
+  margin-bottom: 8px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
 
-    /* Course grid */
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 7px;
-    }
+/* Course grid */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 7px;
+}
 
-    /* Course card */
-    .course {
-      border-radius: 7px;
-      padding: 8px 10px;
-      border-width: 1px;
-      border-style: solid;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
+/* Course card */
+.course {
+  border-radius: 7px;
+  padding: 8px 10px;
+  border-width: 1px;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
 
-    .course-name {
-      font-size: 11.5px;
-      font-weight: 500;
-      line-height: 1.35;
-    }
+.course-name {
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.35;
+}
 
-    .course-meta {
-      font-family: var(--fm);
-      font-size: 9.5px;
-      opacity: .8;
-    }
+.course-meta {
+  font-family: var(--fm);
+  font-size: 9.5px;
+  opacity: .8;
+}
 
-    /* Category colours */
-    .course.p {
-      background: var(--purple-bg);
-      border-color: var(--purple-border);
-    }
+/* Category colours */
+.course.p {
+  background: var(--purple-bg);
+  border-color: var(--purple-border);
+}
 
-    .course.p .course-name {
-      color: var(--purple-head);
-    }
+.course.p .course-name {
+  color: var(--purple-head);
+}
 
-    .course.p .course-meta {
-      color: var(--purple-sub);
-    }
+.course.p .course-meta {
+  color: var(--purple-sub);
+}
 
-    .course.t {
-      background: var(--teal-bg);
-      border-color: var(--teal-border);
-    }
+.course.t {
+  background: var(--teal-bg);
+  border-color: var(--teal-border);
+}
 
-    .course.t .course-name {
-      color: var(--teal-head);
-    }
+.course.t .course-name {
+  color: var(--teal-head);
+}
 
-    .course.t .course-meta {
-      color: var(--teal-sub);
-    }
+.course.t .course-meta {
+  color: var(--teal-sub);
+}
 
-    .course.g {
-      background: var(--gray-bg);
-      border-color: var(--gray-border);
-    }
+.course.g {
+  background: var(--gray-bg);
+  border-color: var(--gray-border);
+}
 
-    .course.g .course-name {
-      color: var(--gray-head);
-    }
+.course.g .course-name {
+  color: var(--gray-head);
+}
 
-    .course.g .course-meta {
-      color: var(--gray-sub);
-    }
+.course.g .course-meta {
+  color: var(--gray-sub);
+}
 
-    .course.a {
-      background: var(--amber-bg);
-      border-color: var(--amber-border);
-    }
+.course.a {
+  background: var(--amber-bg);
+  border-color: var(--amber-border);
+}
 
-    .course.a .course-name {
-      color: var(--amber-head);
-    }
+.course.a .course-name {
+  color: var(--amber-head);
+}
 
-    .course.a .course-meta {
-      color: var(--amber-sub);
-    }
+.course.a .course-meta {
+  color: var(--amber-sub);
+}
 
-    .course.c {
-      background: var(--coral-bg);
-      border-color: var(--coral-border);
-    }
+.course.c {
+  background: var(--coral-bg);
+  border-color: var(--coral-border);
+}
 
-    .course.c .course-name {
-      color: var(--coral-head);
-    }
+.course.c .course-name {
+  color: var(--coral-head);
+}
 
-    .course.c .course-meta {
-      color: var(--coral-sub);
-    }
+.course.c .course-meta {
+  color: var(--coral-sub);
+}
 
-    .course.s {
-      background: var(--pink-bg);
-      border-color: var(--pink-border);
-    }
+.course.s {
+  background: var(--pink-bg);
+  border-color: var(--pink-border);
+}
 
-    .course.s .course-name {
-      color: var(--pink-head);
-    }
+.course.s .course-name {
+  color: var(--pink-head);
+}
 
-    .course.s .course-meta {
-      color: var(--pink-sub);
-    }
+.course.s .course-meta {
+  color: var(--pink-sub);
+}
 
-    /* year arrow connector */
-    .yr-arrow {
-      text-align: center;
-      font-size: 18px;
-      color: var(--year-border);
-      margin: 2px 0 10px;
-      user-select: none;
-    }
+/* year arrow connector */
+.yr-arrow {
+  text-align: center;
+  font-size: 18px;
+  color: var(--year-border);
+  margin: 2px 0 10px;
+  user-select: none;
+}
 
-    /* ── RESPONSIVE: show SVG on wider screens ───────── */
-    @media (min-width: 720px) {
-      .svg-wrap {
-        display: block;
-      }
+/* ── RESPONSIVE: show SVG on wider screens ───────── */
+@media (min-width: 720px) {
+  .svg-wrap {
+    display: block;
+  }
 
-      .card-view {
-        display: none;
-      }
+  .card-view {
+    display: none;
+  }
 
-      header {
-        padding: 24px 24px 18px;
-      }
+  header {
+    padding: 24px 24px 18px;
+  }
 
-      .legend {
-        padding: 12px 24px;
-      }
-    }
+  .legend {
+    padding: 12px 24px;
+  }
+}
+```
+
   </style>
 </head>
 
@@ -304,6 +308,7 @@
   </header>
 
   <!-- Legend (shown on both views) -->
+
   <div class="legend">
     <div class="legend-item">
       <div class="legend-dot" style="background:var(--purple-bg);border:1px solid var(--purple-border)"></div>Core CSE
@@ -326,8 +331,9 @@
   </div>
 
   <!-- ── DESKTOP: original SVG ─────────────────────── -->
+
   <div class="svg-wrap">
-    <svg id="mainSvg" width="100%" viewBox="0 0 680 2040" xmlns="http://www.w3.org/2000/svg">
+    <svg id="mainSvg" width="100%" viewBox="0 0 680 2020" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
           orient="auto-start-reverse">
@@ -342,677 +348,683 @@
             stroke-dasharray: 4 3
           }
 
-          .sm {
-            fill: none;
-            stroke: #b4b2a9;
-            stroke-width: .5
-          }
+```
+      .sm {
+        fill: none;
+        stroke: #b4b2a9;
+        stroke-width: .5
+      }
 
-          .lbl {
-            font-family: sans-serif;
-            font-size: 11px;
-            fill: #5f5e5a
-          }
+      .lbl {
+        font-family: sans-serif;
+        font-size: 11px;
+        fill: #5f5e5a
+      }
 
-          .ylbl {
-            font-family: sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            fill: #2c2c2a
-          }
+      .ylbl {
+        font-family: sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        fill: #2c2c2a
+      }
 
-          .ttl {
-            font-family: sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            fill: #2c2c2a
-          }
+      .ttl {
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        fill: #2c2c2a
+      }
 
-          .th {
-            font-family: sans-serif;
-            font-size: 11.5px;
-            font-weight: 500
-          }
+      .th {
+        font-family: sans-serif;
+        font-size: 11.5px;
+        font-weight: 500
+      }
 
-          .ts {
-            font-family: sans-serif;
-            font-size: 10px
-          }
+      .ts {
+        font-family: sans-serif;
+        font-size: 10px
+      }
 
-          .arr {
-            stroke: #888780;
-            stroke-width: 1.2;
-            fill: none;
-            marker-end: url(#arrow)
-          }
+      .arr {
+        stroke: #888780;
+        stroke-width: 1.2;
+        fill: none;
+        marker-end: url(#arrow)
+      }
 
-          .p rect {
-            fill: #EEEDFE;
-            stroke: #534AB7;
-            stroke-width: .5
-          }
+      .p rect {
+        fill: #EEEDFE;
+        stroke: #534AB7;
+        stroke-width: .5
+      }
 
-          .p .th {
-            fill: #3C3489
-          }
+      .p .th {
+        fill: #3C3489
+      }
 
-          .p .ts {
-            fill: #534AB7
-          }
+      .p .ts {
+        fill: #534AB7
+      }
 
-          .t rect {
-            fill: #E1F5EE;
-            stroke: #0F6E56;
-            stroke-width: .5
-          }
+      .t rect {
+        fill: #E1F5EE;
+        stroke: #0F6E56;
+        stroke-width: .5
+      }
 
-          .t .th {
-            fill: #085041
-          }
+      .t .th {
+        fill: #085041
+      }
 
-          .t .ts {
-            fill: #0F6E56
-          }
+      .t .ts {
+        fill: #0F6E56
+      }
 
-          .g rect {
-            fill: #F1EFE8;
-            stroke: #5F5E5A;
-            stroke-width: .5
-          }
+      .g rect {
+        fill: #F1EFE8;
+        stroke: #5F5E5A;
+        stroke-width: .5
+      }
 
-          .g .th {
-            fill: #444441
-          }
+      .g .th {
+        fill: #444441
+      }
 
-          .g .ts {
-            fill: #5F5E5A
-          }
+      .g .ts {
+        fill: #5F5E5A
+      }
 
-          .a rect {
-            fill: #FAEEDA;
-            stroke: #854F0B;
-            stroke-width: .5
-          }
+      .a rect {
+        fill: #FAEEDA;
+        stroke: #854F0B;
+        stroke-width: .5
+      }
 
-          .a .th {
-            fill: #633806
-          }
+      .a .th {
+        fill: #633806
+      }
 
-          .a .ts {
-            fill: #854F0B
-          }
+      .a .ts {
+        fill: #854F0B
+      }
 
-          .c rect {
-            fill: #FAECE7;
-            stroke: #993C1D;
-            stroke-width: .5
-          }
+      .c rect {
+        fill: #FAECE7;
+        stroke: #993C1D;
+        stroke-width: .5
+      }
 
-          .c .th {
-            fill: #712B13
-          }
+      .c .th {
+        fill: #712B13
+      }
 
-          .c .ts {
-            fill: #993C1D
-          }
+      .c .ts {
+        fill: #993C1D
+      }
 
-          .s rect {
-            fill: #FBEAF0;
-            stroke: #993556;
-            stroke-width: .5
-          }
+      .s rect {
+        fill: #FBEAF0;
+        stroke: #993556;
+        stroke-width: .5
+      }
 
-          .s .th {
-            fill: #72243E
-          }
+      .s .th {
+        fill: #72243E
+      }
 
-          .s .ts {
-            fill: #993556
-          }
-        </style>
-      </defs>
-      <text class="ttl" x="340" y="26" text-anchor="middle">Jhd Course Flowchart</text>
-      <!-- YEAR 1 -->
-      <rect class="yr" x="18" y="38" width="644" height="452" rx="12" />
-      <text class="ylbl" x="30" y="57">Year 1</text>
-      <rect class="sm" x="26" y="64" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="81">Semester 1</text>
-      <g class="t">
-        <rect x="38" y="86" width="184" height="42" rx="6" /><text class="th" x="130" y="103" text-anchor="middle"
-          dominant-baseline="central">ENG101 Basic English</text><text class="ts" x="130" y="119" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="t">
-        <rect x="232" y="86" width="188" height="42" rx="6" /><text class="th" x="326" y="103" text-anchor="middle"
-          dominant-baseline="central">MAT101 Diff. &amp; Int. Calculus</text><text class="ts" x="326" y="119"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="430" y="86" width="202" height="42" rx="6" /><text class="th" x="531" y="103" text-anchor="middle"
-          dominant-baseline="central">CSE103 Structured Prog.</text><text class="ts" x="531" y="119"
-          text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="188" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="205">Semester 2</text>
-      <g class="t">
-        <rect x="38" y="210" width="138" height="42" rx="6" /><text class="th" x="107" y="227" text-anchor="middle"
-          dominant-baseline="central">ENG102 Comp. &amp; Comm.</text><text class="ts" x="107" y="243"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="t">
-        <rect x="186" y="210" width="152" height="42" rx="6" /><text class="th" x="262" y="227" text-anchor="middle"
-          dominant-baseline="central">MAT102 Diff. Eqn.</text><text class="ts" x="262" y="243" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="348" y="210" width="142" height="42" rx="6" /><text class="th" x="419" y="227" text-anchor="middle"
-          dominant-baseline="central">CSE106 Discrete Math</text><text class="ts" x="419" y="243" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="g">
-        <rect x="500" y="210" width="142" height="42" rx="6" /><text class="th" x="571" y="227" text-anchor="middle"
-          dominant-baseline="central">CHE109 Eng. Chemistry</text><text class="ts" x="571" y="243" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="312" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="329">Semester 3</text>
-      <g class="g">
-        <rect x="38" y="334" width="184" height="42" rx="6" /><text class="th" x="130" y="351" text-anchor="middle"
-          dominant-baseline="central">PHY109 Eng. Physics I</text><text class="ts" x="130" y="367" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="t">
-        <rect x="232" y="334" width="188" height="42" rx="6" /><text class="th" x="326" y="351" text-anchor="middle"
-          dominant-baseline="central">MAT104 Coord. Geom. &amp; Vec.</text><text class="ts" x="326" y="367"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="430" y="334" width="202" height="42" rx="6" /><text class="th" x="531" y="351" text-anchor="middle"
-          dominant-baseline="central">CSE110 OOP</text><text class="ts" x="531" y="367" text-anchor="middle"
-          dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <line class="arr" x1="340" y1="490" x2="340" y2="512" />
-      <!-- YEAR 2 -->
-      <rect class="yr" x="18" y="516" width="644" height="452" rx="12" />
-      <text class="ylbl" x="30" y="535">Year 2</text>
-      <rect class="sm" x="26" y="542" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="559">Semester 1</text>
-      <g class="g">
-        <rect x="38" y="564" width="142" height="42" rx="6" /><text class="th" x="109" y="581" text-anchor="middle"
-          dominant-baseline="central">GEN226 Emergence of BD</text><text class="ts" x="109" y="597" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="t">
-        <rect x="190" y="564" width="152" height="42" rx="6" /><text class="th" x="266" y="581" text-anchor="middle"
-          dominant-baseline="central">STA102 Stats &amp; Prob.</text><text class="ts" x="266" y="597"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="352" y="564" width="138" height="42" rx="6" /><text class="th" x="421" y="581" text-anchor="middle"
-          dominant-baseline="central">CSE200 CAE Drawing</text><text class="ts" x="421" y="597" text-anchor="middle"
-          dominant-baseline="central">1 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="500" y="564" width="142" height="42" rx="6" /><text class="th" x="571" y="581" text-anchor="middle"
-          dominant-baseline="central">CSE209 Elec. Circuits</text><text class="ts" x="571" y="597" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="666" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="683">Semester 2</text>
-      <g class="g">
-        <rect x="38" y="688" width="142" height="42" rx="6" /><text class="th" x="109" y="705" text-anchor="middle"
-          dominant-baseline="central">SOC317 Sociology S&amp;T</text><text class="ts" x="109" y="721"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="t">
-        <rect x="190" y="688" width="152" height="42" rx="6" /><text class="th" x="266" y="705" text-anchor="middle"
-          dominant-baseline="central">MAT205 Lin. Alg. &amp; Cmplx.</text><text class="ts" x="266" y="721"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="352" y="688" width="138" height="42" rx="6" /><text class="th" x="421" y="705" text-anchor="middle"
-          dominant-baseline="central">CSE207 Data Structures</text><text class="ts" x="421" y="721" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="500" y="688" width="142" height="42" rx="6" /><text class="th" x="571" y="705" text-anchor="middle"
-          dominant-baseline="central">CSE251 Electronic Ckt.</text><text class="ts" x="571" y="721" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="790" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="807">Semester 3</text>
-      <g class="g">
-        <rect x="38" y="812" width="188" height="42" rx="6" /><text class="th" x="132" y="829" text-anchor="middle"
-          dominant-baseline="central">GEN210 International Rel.</text><text class="ts" x="132" y="845"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="g">
-        <rect x="236" y="812" width="188" height="42" rx="6" /><text class="th" x="330" y="829" text-anchor="middle"
-          dominant-baseline="central">PHY209 Eng. Physics II</text><text class="ts" x="330" y="845" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="434" y="812" width="198" height="42" rx="6" /><text class="th" x="533" y="829" text-anchor="middle"
-          dominant-baseline="central">CSE325 Operating Systems</text><text class="ts" x="533" y="845"
-          text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <line class="arr" x1="340" y1="968" x2="340" y2="990" />
-      <!-- YEAR 3 -->
-      <rect class="yr" x="18" y="994" width="644" height="452" rx="12" />
-      <text class="ylbl" x="30" y="1013">Year 3</text>
-      <rect class="sm" x="26" y="1020" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="1037">Semester 1</text>
-      <g class="g">
-        <rect x="38" y="1042" width="188" height="42" rx="6" /><text class="th" x="132" y="1059" text-anchor="middle"
-          dominant-baseline="central">BUS321 Business for Eng.</text><text class="ts" x="132" y="1075"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="p">
-        <rect x="236" y="1042" width="188" height="42" rx="6" /><text class="th" x="330" y="1059" text-anchor="middle"
-          dominant-baseline="central">CSE246 Algorithms</text><text class="ts" x="330" y="1075" text-anchor="middle"
-          dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="434" y="1042" width="198" height="42" rx="6" /><text class="th" x="533" y="1059" text-anchor="middle"
-          dominant-baseline="central">CSE302 Database Systems</text><text class="ts" x="533" y="1075"
-          text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="1144" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="1161">Semester 2</text>
-      <g class="p">
-        <rect x="38" y="1166" width="188" height="42" rx="6" /><text class="th" x="132" y="1183" text-anchor="middle"
-          dominant-baseline="central">CSE345 Digital Logic Design</text><text class="ts" x="132" y="1199"
-          text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="236" y="1166" width="188" height="42" rx="6" /><text class="th" x="330" y="1183" text-anchor="middle"
-          dominant-baseline="central">CSE347 IS Analysis &amp; Design</text><text class="ts" x="330" y="1199"
-          text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="t">
-        <rect x="434" y="1166" width="198" height="42" rx="6" /><text class="th" x="533" y="1183" text-anchor="middle"
-          dominant-baseline="central">CSE303 Stats for Data Sci.</text><text class="ts" x="533" y="1199"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <rect class="sm" x="26" y="1268" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="1285">Semester 3</text>
-      <g class="p">
-        <rect x="38" y="1290" width="142" height="42" rx="6" /><text class="th" x="109" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE360 Comp. Arch.</text><text class="ts" x="109" y="1323" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="190" y="1290" width="150" height="42" rx="6" /><text class="th" x="265" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE405 Networks</text><text class="ts" x="265" y="1323" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="a">
-        <rect x="350" y="1290" width="148" height="42" rx="6" /><text class="th" x="424" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE366 Art. Intelligence</text><text class="ts" x="424" y="1323"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="s">
-        <rect x="508" y="1290" width="124" height="42" rx="6" /><text class="th" x="570" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE460 Cryptography</text><text class="ts" x="570" y="1323" text-anchor="middle"
-          dominant-baseline="central">elective</text>
-      </g>
-      <line class="arr" x1="340" y1="1446" x2="340" y2="1468" />
-      <!-- YEAR 4 -->
-      <rect class="yr" x="18" y="1472" width="644" height="545" rx="12" />
-      <text class="ylbl" x="30" y="1491">Year 4</text>
-      <rect class="sm" x="26" y="1498" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="1515">Semester 1</text>
-      <g class="c">
-        <rect x="38" y="1520" width="130" height="42" rx="6" /><text class="th" x="103" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE400 Capstone I</text><text class="ts" x="103" y="1553" text-anchor="middle"
-          dominant-baseline="central">1 cr</text>
-      </g>
-      <g class="g">
-        <rect x="178" y="1520" width="142" height="42" rx="6" /><text class="th" x="249" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE407 Green Computing</text><text class="ts" x="249" y="1553"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="a">
-        <rect x="330" y="1520" width="152" height="42" rx="6" /><text class="th" x="406" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE475 Machine Learning</text><text class="ts" x="406" y="1553"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="p">
-        <rect x="492" y="1520" width="150" height="42" rx="6" /><text class="th" x="567" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE452 Distributed Sys.</text><text class="ts" x="567" y="1553"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <rect class="sm" x="26" y="1622" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="1639">Semester 2</text>
-      <g class="c">
-        <rect x="38" y="1644" width="130" height="42" rx="6" /><text class="th" x="103" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE400 Capstone II</text><text class="ts" x="103" y="1677" text-anchor="middle"
-          dominant-baseline="central">2 cr</text>
-      </g>
-      <g class="s">
-        <rect x="178" y="1644" width="158" height="42" rx="6" /><text class="th" x="257" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE487 Cyber Sec. &amp; Law</text><text class="ts" x="257" y="1677"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="a">
-        <rect x="346" y="1644" width="148" height="42" rx="6" /><text class="th" x="420" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE474 Pattern Recognition</text><text class="ts" x="420" y="1677"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="s">
-        <rect x="504" y="1644" width="138" height="42" rx="6" /><text class="th" x="573" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE473 Network Security</text><text class="ts" x="573" y="1677"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <rect class="sm" x="26" y="1746" width="622" height="116" rx="8" />
-      <text class="lbl" x="38" y="1763">Semester 3</text>
-      <g class="c">
-        <rect x="38" y="1768" width="130" height="42" rx="6" /><text class="th" x="103" y="1785" text-anchor="middle"
-          dominant-baseline="central">CSE400 Capstone III</text><text class="ts" x="103" y="1801" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="g">
-        <rect x="178" y="1768" width="150" height="42" rx="6" /><text class="th" x="253" y="1785" text-anchor="middle"
-          dominant-baseline="central">CSE495 IT PM &amp; Entrep.</text><text class="ts" x="253" y="1801"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="a">
-        <rect x="338" y="1768" width="152" height="42" rx="6" /><text class="th" x="414" y="1785" text-anchor="middle"
-          dominant-baseline="central">CSE445 Computer Vision</text><text class="ts" x="414" y="1801"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <!-- LEGEND -->
-      <rect class="sm" x="26" y="1886" width="622" height="120" rx="8" />
-      <text class="lbl" x="38" y="1904">Legend</text>
-      <rect x="38" y="1912" width="13" height="13" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5" /><text
-        class="lbl" x="57" y="1923">Core CSE</text>
-      <rect x="140" y="1912" width="13" height="13" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5" /><text
-        class="lbl" x="159" y="1923">Math / English</text>
-      <rect x="262" y="1912" width="13" height="13" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5" /><text
-        class="lbl" x="281" y="1923">Gen. / Science</text>
-      <rect x="384" y="1912" width="13" height="13" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" /><text
-        class="lbl" x="403" y="1923">AI / ML</text>
-      <rect x="450" y="1912" width="13" height="13" rx="3" fill="#FBEAF0" stroke="#993556" stroke-width="0.5" /><text
-        class="lbl" x="469" y="1923">Security</text>
-      <rect x="530" y="1912" width="13" height="13" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5" /><text
-        class="lbl" x="549" y="1923">Capstone</text>
-      <text class="lbl" x="38" y="1948">(lab) = includes laboratory component.</text>
-    </svg>
+      .s .ts {
+        fill: #993556
+      }
+    </style>
+  </defs>
+  <text class="ttl" x="340" y="26" text-anchor="middle">Jhd Course Flowchart</text>
+  <!-- YEAR 1 -->
+  <rect class="yr" x="18" y="38" width="644" height="452" rx="12" />
+  <text class="ylbl" x="30" y="57">Year 1</text>
+  <rect class="sm" x="26" y="64" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="81">Semester 1</text>
+  <g class="t">
+    <rect x="38" y="86" width="184" height="42" rx="6" /><text class="th" x="130" y="103" text-anchor="middle"
+      dominant-baseline="central">ENG101 Basic English</text><text class="ts" x="130" y="119" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="t">
+    <rect x="232" y="86" width="188" height="42" rx="6" /><text class="th" x="326" y="103" text-anchor="middle"
+      dominant-baseline="central">MAT101 Diff. &amp; Int. Calculus</text><text class="ts" x="326" y="119"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="430" y="86" width="202" height="42" rx="6" /><text class="th" x="531" y="103" text-anchor="middle"
+      dominant-baseline="central">CSE103 Structured Prog.</text><text class="ts" x="531" y="119"
+      text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
+  </g>
+  <rect class="sm" x="26" y="188" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="205">Semester 2</text>
+  <g class="t">
+    <rect x="38" y="210" width="138" height="42" rx="6" /><text class="th" x="107" y="227" text-anchor="middle"
+      dominant-baseline="central">ENG102 Comp. &amp; Comm.</text><text class="ts" x="107" y="243"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="t">
+    <rect x="186" y="210" width="152" height="42" rx="6" /><text class="th" x="262" y="227" text-anchor="middle"
+      dominant-baseline="central">MAT102 Diff. Eqn.</text><text class="ts" x="262" y="243" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="348" y="210" width="142" height="42" rx="6" /><text class="th" x="419" y="227" text-anchor="middle"
+      dominant-baseline="central">CSE106 Discrete Math</text><text class="ts" x="419" y="243" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="g">
+    <rect x="500" y="210" width="142" height="42" rx="6" /><text class="th" x="571" y="227" text-anchor="middle"
+      dominant-baseline="central">CHE109 Eng. Chemistry</text><text class="ts" x="571" y="243" text-anchor="middle"
+      dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <rect class="sm" x="26" y="312" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="329">Semester 3</text>
+  <g class="g">
+    <rect x="38" y="334" width="184" height="42" rx="6" /><text class="th" x="130" y="351" text-anchor="middle"
+      dominant-baseline="central">PHY109 Eng. Physics I</text><text class="ts" x="130" y="367" text-anchor="middle"
+      dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <g class="t">
+    <rect x="232" y="334" width="188" height="42" rx="6" /><text class="th" x="326" y="351" text-anchor="middle"
+      dominant-baseline="central">MAT104 Coord. Geom. &amp; Vec.</text><text class="ts" x="326" y="367"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="430" y="334" width="202" height="42" rx="6" /><text class="th" x="531" y="351" text-anchor="middle"
+      dominant-baseline="central">CSE110 OOP</text><text class="ts" x="531" y="367" text-anchor="middle"
+      dominant-baseline="central">4.5 cr (lab)</text>
+  </g>
+  <line class="arr" x1="340" y1="490" x2="340" y2="512" />
+  <!-- YEAR 2 -->
+  <rect class="yr" x="18" y="516" width="644" height="452" rx="12" />
+  <text class="ylbl" x="30" y="535">Year 2</text>
+  <rect class="sm" x="26" y="542" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="559">Semester 1</text>
+  <g class="g">
+    <rect x="38" y="564" width="142" height="42" rx="6" /><text class="th" x="109" y="581" text-anchor="middle"
+      dominant-baseline="central">GEN226 Emergence of BD</text><text class="ts" x="109" y="597" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="t">
+    <rect x="190" y="564" width="152" height="42" rx="6" /><text class="th" x="266" y="581" text-anchor="middle"
+      dominant-baseline="central">STA102 Stats &amp; Prob.</text><text class="ts" x="266" y="597"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="352" y="564" width="138" height="42" rx="6" /><text class="th" x="421" y="581" text-anchor="middle"
+      dominant-baseline="central">CSE200 CAE Drawing</text><text class="ts" x="421" y="597" text-anchor="middle"
+      dominant-baseline="central">1 cr (lab)</text>
+  </g>
+  <g class="p">
+    <rect x="500" y="564" width="142" height="42" rx="6" /><text class="th" x="571" y="581" text-anchor="middle"
+      dominant-baseline="central">CSE209 Elec. Circuits</text><text class="ts" x="571" y="597" text-anchor="middle"
+      dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <rect class="sm" x="26" y="666" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="683">Semester 2</text>
+  <g class="g">
+    <rect x="38" y="688" width="142" height="42" rx="6" /><text class="th" x="109" y="705" text-anchor="middle"
+      dominant-baseline="central">SOC317 Sociology S&amp;T</text><text class="ts" x="109" y="721"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <g class="t">
+    <rect x="190" y="688" width="152" height="42" rx="6" /><text class="th" x="266" y="705" text-anchor="middle"
+      dominant-baseline="central">MAT205 Lin. Alg. &amp; Cmplx.</text><text class="ts" x="266" y="721"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="352" y="688" width="138" height="42" rx="6" /><text class="th" x="421" y="705" text-anchor="middle"
+      dominant-baseline="central">CSE207 Data Structures</text><text class="ts" x="421" y="721" text-anchor="middle"
+      dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <g class="p">
+    <rect x="500" y="688" width="142" height="42" rx="6" /><text class="th" x="571" y="705" text-anchor="middle"
+      dominant-baseline="central">CSE251 Electronic Ckt.</text><text class="ts" x="571" y="721" text-anchor="middle"
+      dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <rect class="sm" x="26" y="790" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="807">Semester 3</text>
+  <g class="g">
+    <rect x="38" y="812" width="188" height="42" rx="6" /><text class="th" x="132" y="829" text-anchor="middle"
+      dominant-baseline="central">GEN210 International Rel.</text><text class="ts" x="132" y="845"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <g class="g">
+    <rect x="236" y="812" width="188" height="42" rx="6" /><text class="th" x="330" y="829" text-anchor="middle"
+      dominant-baseline="central">PHY209 Eng. Physics II</text><text class="ts" x="330" y="845" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="434" y="812" width="198" height="42" rx="6" /><text class="th" x="533" y="829" text-anchor="middle"
+      dominant-baseline="central">CSE325 Operating Systems</text><text class="ts" x="533" y="845"
+      text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <line class="arr" x1="340" y1="968" x2="340" y2="990" />
+  <!-- YEAR 3 -->
+  <rect class="yr" x="18" y="994" width="644" height="452" rx="12" />
+  <text class="ylbl" x="30" y="1013">Year 3</text>
+  <rect class="sm" x="26" y="1020" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="1037">Semester 1</text>
+  <g class="g">
+    <rect x="38" y="1042" width="188" height="42" rx="6" /><text class="th" x="132" y="1059" text-anchor="middle"
+      dominant-baseline="central">BUS321 Business for Eng.</text><text class="ts" x="132" y="1075"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <g class="p">
+    <rect x="236" y="1042" width="188" height="42" rx="6" /><text class="th" x="330" y="1059" text-anchor="middle"
+      dominant-baseline="central">CSE246 Algorithms</text><text class="ts" x="330" y="1075" text-anchor="middle"
+      dominant-baseline="central">4.5 cr (lab)</text>
+  </g>
+  <g class="p">
+    <rect x="434" y="1042" width="198" height="42" rx="6" /><text class="th" x="533" y="1059" text-anchor="middle"
+      dominant-baseline="central">CSE302 Database Systems</text><text class="ts" x="533" y="1075"
+      text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
+  </g>
+  <rect class="sm" x="26" y="1144" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="1161">Semester 2</text>
+  <g class="p">
+    <rect x="38" y="1166" width="188" height="42" rx="6" /><text class="th" x="132" y="1183" text-anchor="middle"
+      dominant-baseline="central">CSE345 Digital Logic Design</text><text class="ts" x="132" y="1199"
+      text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <g class="p">
+    <rect x="236" y="1166" width="188" height="42" rx="6" /><text class="th" x="330" y="1183" text-anchor="middle"
+      dominant-baseline="central">CSE347 IS Analysis &amp; Design</text><text class="ts" x="330" y="1199"
+      text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <g class="t">
+    <rect x="434" y="1166" width="198" height="42" rx="6" /><text class="th" x="533" y="1183" text-anchor="middle"
+      dominant-baseline="central">CSE303 Stats for Data Sci.</text><text class="ts" x="533" y="1199"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <rect class="sm" x="26" y="1268" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="1285">Semester 3</text>
+  <g class="p">
+    <rect x="38" y="1290" width="142" height="42" rx="6" /><text class="th" x="109" y="1307" text-anchor="middle"
+      dominant-baseline="central">CSE360 Comp. Arch.</text><text class="ts" x="109" y="1323" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="p">
+    <rect x="190" y="1290" width="150" height="42" rx="6" /><text class="th" x="265" y="1307" text-anchor="middle"
+      dominant-baseline="central">CSE405 Networks</text><text class="ts" x="265" y="1323" text-anchor="middle"
+      dominant-baseline="central">4 cr (lab)</text>
+  </g>
+  <g class="a">
+    <rect x="350" y="1290" width="148" height="42" rx="6" /><text class="th" x="424" y="1307" text-anchor="middle"
+      dominant-baseline="central">CSE366 Art. Intelligence</text><text class="ts" x="424" y="1323"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <g class="s">
+    <rect x="508" y="1290" width="124" height="42" rx="6" /><text class="th" x="570" y="1307" text-anchor="middle"
+      dominant-baseline="central">CSE460 Cryptography</text><text class="ts" x="570" y="1323" text-anchor="middle"
+      dominant-baseline="central">elective</text>
+  </g>
+  <line class="arr" x1="340" y1="1446" x2="340" y2="1468" />
+  <!-- YEAR 4 -->
+  <rect class="yr" x="18" y="1472" width="644" height="502" rx="12" />
+  <text class="ylbl" x="30" y="1491">Year 4</text>
+  <rect class="sm" x="26" y="1498" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="1515">Semester 1</text>
+  <g class="c">
+    <rect x="38" y="1520" width="130" height="42" rx="6" /><text class="th" x="103" y="1537" text-anchor="middle"
+      dominant-baseline="central">CSE400 Capstone I</text><text class="ts" x="103" y="1553" text-anchor="middle"
+      dominant-baseline="central">1 cr</text>
+  </g>
+  <g class="g">
+    <rect x="178" y="1520" width="142" height="42" rx="6" /><text class="th" x="249" y="1537" text-anchor="middle"
+      dominant-baseline="central">CSE407 Green Computing</text><text class="ts" x="249" y="1553"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="a">
+    <rect x="330" y="1520" width="152" height="42" rx="6" /><text class="th" x="406" y="1537" text-anchor="middle"
+      dominant-baseline="central">CSE475 Machine Learning</text><text class="ts" x="406" y="1553"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <g class="p">
+    <rect x="492" y="1520" width="150" height="42" rx="6" /><text class="th" x="567" y="1537" text-anchor="middle"
+      dominant-baseline="central">CSE452 Distributed Sys.</text><text class="ts" x="567" y="1553"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <rect class="sm" x="26" y="1622" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="1639">Semester 2</text>
+  <g class="c">
+    <rect x="38" y="1644" width="130" height="42" rx="6" /><text class="th" x="103" y="1661" text-anchor="middle"
+      dominant-baseline="central">CSE400 Capstone II</text><text class="ts" x="103" y="1677" text-anchor="middle"
+      dominant-baseline="central">2 cr</text>
+  </g>
+  <g class="s">
+    <rect x="178" y="1644" width="158" height="42" rx="6" /><text class="th" x="257" y="1661" text-anchor="middle"
+      dominant-baseline="central">CSE487 Cyber Sec. &amp; Law</text><text class="ts" x="257" y="1677"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="a">
+    <rect x="346" y="1644" width="148" height="42" rx="6" /><text class="th" x="420" y="1661" text-anchor="middle"
+      dominant-baseline="central">CSE474 Pattern Recognition</text><text class="ts" x="420" y="1677"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <g class="s">
+    <rect x="504" y="1644" width="138" height="42" rx="6" /><text class="th" x="573" y="1661" text-anchor="middle"
+      dominant-baseline="central">CSE473 Network Security</text><text class="ts" x="573" y="1677"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <rect class="sm" x="26" y="1746" width="622" height="116" rx="8" />
+  <text class="lbl" x="38" y="1763">Semester 3</text>
+  <g class="c">
+    <rect x="38" y="1768" width="130" height="42" rx="6" /><text class="th" x="103" y="1785" text-anchor="middle"
+      dominant-baseline="central">CSE400 Capstone III</text><text class="ts" x="103" y="1801" text-anchor="middle"
+      dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="g">
+    <rect x="178" y="1768" width="150" height="42" rx="6" /><text class="th" x="253" y="1785" text-anchor="middle"
+      dominant-baseline="central">CSE495 IT PM &amp; Entrep.</text><text class="ts" x="253" y="1801"
+      text-anchor="middle" dominant-baseline="central">3 cr</text>
+  </g>
+  <g class="a">
+    <rect x="338" y="1768" width="152" height="42" rx="6" /><text class="th" x="414" y="1785" text-anchor="middle"
+      dominant-baseline="central">CSE445 Computer Vision</text><text class="ts" x="414" y="1801"
+      text-anchor="middle" dominant-baseline="central">elective</text>
+  </g>
+  <!-- LEGEND -->
+  <rect class="sm" x="26" y="1886" width="622" height="120" rx="8" />
+  <text class="lbl" x="38" y="1904">Legend</text>
+  <rect x="38" y="1912" width="13" height="13" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5" /><text
+    class="lbl" x="57" y="1923">Core CSE</text>
+  <rect x="140" y="1912" width="13" height="13" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5" /><text
+    class="lbl" x="159" y="1923">Math / English</text>
+  <rect x="262" y="1912" width="13" height="13" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5" /><text
+    class="lbl" x="281" y="1923">Gen. / Science</text>
+  <rect x="384" y="1912" width="13" height="13" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" /><text
+    class="lbl" x="403" y="1923">AI / ML</text>
+  <rect x="450" y="1912" width="13" height="13" rx="3" fill="#FBEAF0" stroke="#993556" stroke-width="0.5" /><text
+    class="lbl" x="469" y="1923">Security</text>
+  <rect x="530" y="1912" width="13" height="13" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5" /><text
+    class="lbl" x="549" y="1923">Capstone</text>
+  <text class="lbl" x="38" y="1948">(lab) = includes laboratory component.</text>
+</svg>
+```
+
   </div>
 
   <!-- ── MOBILE: card layout ────────────────────────── -->
+
   <div class="card-view">
 
-    <!-- YEAR 1 -->
-    <div class="year-block">
-      <div class="year-label">Year 1</div>
+```
+<!-- YEAR 1 -->
+<div class="year-block">
+  <div class="year-label">Year 1</div>
 
-      <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
-        <div class="courses">
-          <div class="course t">
-            <div class="course-name">ENG101 Basic English</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT101 Diff. &amp; Int. Calculus</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE103 Structured Prog.</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-        </div>
+  <div class="sem-block">
+    <div class="sem-label">Semester 1</div>
+    <div class="courses">
+      <div class="course t">
+        <div class="course-name">ENG101 Basic English</div>
+        <div class="course-meta">3 cr</div>
       </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
-        <div class="courses">
-          <div class="course t">
-            <div class="course-name">ENG102 Comp. &amp; Comm.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT102 Diff. Eqn.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE106 Discrete Math</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">CHE109 Eng. Chemistry</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
+      <div class="course t">
+        <div class="course-name">MAT101 Diff. &amp; Int. Calculus</div>
+        <div class="course-meta">3 cr</div>
       </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">PHY109 Eng. Physics I</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT104 Coord. Geom. &amp; Vec.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE110 OOP</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-        </div>
+      <div class="course p">
+        <div class="course-name">CSE103 Structured Prog.</div>
+        <div class="course-meta">4.5 cr (lab)</div>
       </div>
     </div>
-
-    <div class="yr-arrow">↓</div>
-
-    <!-- YEAR 2 -->
-    <div class="year-block">
-      <div class="year-label">Year 2</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">GEN226 Emergence of BD</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">STA102 Stats &amp; Prob.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE200 CAE Drawing</div>
-            <div class="course-meta">1 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE209 Elec. Circuits</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">SOC317 Sociology S&amp;T</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT205 Lin. Alg. &amp; Cmplx.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE207 Data Structures</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE251 Electronic Ckt.</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">GEN210 International Rel.</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">PHY209 Eng. Physics II</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE325 Operating Systems</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="yr-arrow">↓</div>
-
-    <!-- YEAR 3 -->
-    <div class="year-block">
-      <div class="year-label">Year 3</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">BUS321 Business for Eng.</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE246 Algorithms</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE302 Database Systems</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
-        <div class="courses">
-          <div class="course p">
-            <div class="course-name">CSE345 Digital Logic Design</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE347 IS Analysis &amp; Design</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">CSE303 Stats for Data Sci.</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
-        <div class="courses">
-          <div class="course p">
-            <div class="course-name">CSE360 Comp. Arch.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE405 Networks</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE366 Art. Intelligence</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course s">
-            <div class="course-name">CSE460 Cryptography</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="yr-arrow">↓</div>
-
-    <!-- YEAR 4 -->
-    <div class="year-block">
-      <div class="year-label">Year 4</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
-        <div class="courses">
-          <div class="course c">
-            <div class="course-name">CSE400 Capstone I</div>
-            <div class="course-meta">1 cr</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">CSE407 Green Computing</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE475 Machine Learning</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE452 Distributed Sys.</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
-        <div class="courses">
-          <div class="course c">
-            <div class="course-name">CSE400 Capstone II</div>
-            <div class="course-meta">2 cr</div>
-          </div>
-          <div class="course s">
-            <div class="course-name">CSE487 Cyber Sec. &amp; Law</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE474 Pattern Recognition</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course s">
-            <div class="course-name">CSE473 Network Security</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
-        <div class="courses">
-          <div class="course c">
-            <div class="course-name">CSE400 Capstone III</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">CSE495 IT PM &amp; Entrep.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE445 Computer Vision</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p style="font-size:10px;color:#888;margin-top:16px;font-family:'IBM Plex Mono',monospace;">(lab) = includes
-      laboratory component.</p>
   </div>
 
+  <div class="sem-block">
+    <div class="sem-label">Semester 2</div>
+    <div class="courses">
+      <div class="course t">
+        <div class="course-name">ENG102 Comp. &amp; Comm.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course t">
+        <div class="course-name">MAT102 Diff. Eqn.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE106 Discrete Math</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course g">
+        <div class="course-name">CHE109 Eng. Chemistry</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 3</div>
+    <div class="courses">
+      <div class="course g">
+        <div class="course-name">PHY109 Eng. Physics I</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+      <div class="course t">
+        <div class="course-name">MAT104 Coord. Geom. &amp; Vec.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE110 OOP</div>
+        <div class="course-meta">4.5 cr (lab)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="yr-arrow">↓</div>
+
+<!-- YEAR 2 -->
+<div class="year-block">
+  <div class="year-label">Year 2</div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 1</div>
+    <div class="courses">
+      <div class="course g">
+        <div class="course-name">GEN226 Emergence of BD</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course t">
+        <div class="course-name">STA102 Stats &amp; Prob.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE200 CAE Drawing</div>
+        <div class="course-meta">1 cr (lab)</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE209 Elec. Circuits</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 2</div>
+    <div class="courses">
+      <div class="course g">
+        <div class="course-name">SOC317 Sociology S&amp;T</div>
+        <div class="course-meta">elective</div>
+      </div>
+      <div class="course t">
+        <div class="course-name">MAT205 Lin. Alg. &amp; Cmplx.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE207 Data Structures</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE251 Electronic Ckt.</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 3</div>
+    <div class="courses">
+      <div class="course g">
+        <div class="course-name">GEN210 International Rel.</div>
+        <div class="course-meta">elective</div>
+      </div>
+      <div class="course g">
+        <div class="course-name">PHY209 Eng. Physics II</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE325 Operating Systems</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="yr-arrow">↓</div>
+
+<!-- YEAR 3 -->
+<div class="year-block">
+  <div class="year-label">Year 3</div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 1</div>
+    <div class="courses">
+      <div class="course g">
+        <div class="course-name">BUS321 Business for Eng.</div>
+        <div class="course-meta">elective</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE246 Algorithms</div>
+        <div class="course-meta">4.5 cr (lab)</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE302 Database Systems</div>
+        <div class="course-meta">4.5 cr (lab)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 2</div>
+    <div class="courses">
+      <div class="course p">
+        <div class="course-name">CSE345 Digital Logic Design</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE347 IS Analysis &amp; Design</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+      <div class="course t">
+        <div class="course-name">CSE303 Stats for Data Sci.</div>
+        <div class="course-meta">elective</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 3</div>
+    <div class="courses">
+      <div class="course p">
+        <div class="course-name">CSE360 Comp. Arch.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE405 Networks</div>
+        <div class="course-meta">4 cr (lab)</div>
+      </div>
+      <div class="course a">
+        <div class="course-name">CSE366 Art. Intelligence</div>
+        <div class="course-meta">elective</div>
+      </div>
+      <div class="course s">
+        <div class="course-name">CSE460 Cryptography</div>
+        <div class="course-meta">elective</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="yr-arrow">↓</div>
+
+<!-- YEAR 4 -->
+<div class="year-block">
+  <div class="year-label">Year 4</div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 1</div>
+    <div class="courses">
+      <div class="course c">
+        <div class="course-name">CSE400 Capstone I</div>
+        <div class="course-meta">1 cr</div>
+      </div>
+      <div class="course g">
+        <div class="course-name">CSE407 Green Computing</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course a">
+        <div class="course-name">CSE475 Machine Learning</div>
+        <div class="course-meta">elective</div>
+      </div>
+      <div class="course p">
+        <div class="course-name">CSE452 Distributed Sys.</div>
+        <div class="course-meta">elective</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 2</div>
+    <div class="courses">
+      <div class="course c">
+        <div class="course-name">CSE400 Capstone II</div>
+        <div class="course-meta">2 cr</div>
+      </div>
+      <div class="course s">
+        <div class="course-name">CSE487 Cyber Sec. &amp; Law</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course a">
+        <div class="course-name">CSE474 Pattern Recognition</div>
+        <div class="course-meta">elective</div>
+      </div>
+      <div class="course s">
+        <div class="course-name">CSE473 Network Security</div>
+        <div class="course-meta">elective</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sem-block">
+    <div class="sem-label">Semester 3</div>
+    <div class="courses">
+      <div class="course c">
+        <div class="course-name">CSE400 Capstone III</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course g">
+        <div class="course-name">CSE495 IT PM &amp; Entrep.</div>
+        <div class="course-meta">3 cr</div>
+      </div>
+      <div class="course a">
+        <div class="course-name">CSE445 Computer Vision</div>
+        <div class="course-meta">elective</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="font-size:10px;color:#888;margin-top:16px;font-family:'IBM Plex Mono',monospace;">(lab) = includes
+  laboratory component.</p>
+```
+
+  </div>
 
 <style>
   /* ── HOVER INTERACTION ───────────────────────────────── */
@@ -1188,17 +1200,34 @@
       const card = e.target.closest('.course[data-id]');
       if (card) highlight(card.dataset.id);
     });
-    cardView.addEventListener('mouseleave', resetAll);
 
-    // Touch support for mobile
-    cardView.addEventListener('touchstart', e => {
+    // Scroll-aware tap detection
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let didScroll = false;
+
+    document.addEventListener('touchstart', e => {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      didScroll = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', () => {
+      didScroll = true;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      if (didScroll) return; // finger was scrolling, ignore
       const card = e.target.closest('.course[data-id]');
-      if (!card) { resetAll(); return; }
-      e.preventDefault();
-      // Toggle: if already active, reset; else highlight
-      if (card.classList.contains('active')) { resetAll(); }
-      else { highlight(card.dataset.id); }
-    }, { passive: false });
+      if (card) {
+        // Tap on a card: toggle or switch highlight
+        if (card.classList.contains('active')) resetAll();
+        else highlight(card.dataset.id);
+      } else {
+        // Tap on blank space: reset
+        resetAll();
+      }
+    }, { passive: true });
   }
 })();
 </script>
