@@ -1014,194 +1014,216 @@
   </div>
 
 
-<style>
-  /* ── HOVER INTERACTION ───────────────────────────────── */
+  <style>
+    /* ── HOVER INTERACTION ───────────────────────────────── */
 
-  /* SVG <g> nodes */
-  svg g[data-id] {
-    cursor: pointer;
-    transition: opacity 0.18s ease, transform 0.18s ease;
-    transform-origin: center;
-    transform-box: fill-box;
-  }
-  svg g[data-id].active {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  svg g[data-id].dim {
-    opacity: 0.15;
-  }
+    /* SVG <g> nodes */
+    svg g[data-id] {
+      cursor: pointer;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
 
-  /* Mobile .course cards */
-  .course {
-    cursor: pointer;
-    transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-  }
-  .course.active {
-    opacity: 1;
-    transform: scale(1.05);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.13);
-    z-index: 2;
-    position: relative;
-  }
-  .course.dim {
-    opacity: 0.15;
-  }
+    svg g[data-id].active {
+      opacity: 1;
+      transform: scale(1.05);
+    }
 
-  /* Arrow lines dim too */
-  svg .arr[data-pre][data-post] {
-    transition: opacity 0.18s ease, stroke 0.18s ease;
-  }
-  svg .arr.dim-arr {
-    opacity: 0.08;
-  }
-  svg .arr.active-arr {
-    stroke: #2563eb;
-    opacity: 1;
-    stroke-width: 1.8;
-  }
-</style>
+    svg g[data-id].dim {
+      opacity: 0.15;
+    }
 
-<script>
-(function () {
-  /* ── 1. PREREQUISITE DATA ─────────────────────────── */
-  const edges = [
-    ['ENG101','ENG102'],['MAT101','MAT102'],['CSE103','CSE106'],
-    ['MAT102','PHY109'],['MAT101','MAT104'],['CSE106','CSE110'],
-    ['ENG102','GEN226'],['MAT102','MAT205'],['CSE110','CSE207'],
-    ['CSE209','CSE251'],['ENG102','GEN210'],['MAT205','PHY209'],
-    ['CSE207','CSE325'],['ENG102','BUS321'],['CSE207','CSE246'],
-    ['CSE106','CSE302'],['CSE251','CSE345'],['CSE302','CSE347'],
-    ['STA102','CSE303'],['CSE325','CSE360'],['CSE246','CSE405'],
-    ['CSE246','CSE366'],['CSE246','CSE460'],['CSE405','CSE407'],
-    ['CSE366','CSE475'],['CSE325','CSE452'],['CSE405','CSE487'],
-    ['CSE366','CSE474'],['CSE405','CSE473'],['CSE347','CSE495'],
-    ['CSE246','CSE445']
-  ];
+    /* Mobile .course cards */
+    .course {
+      cursor: pointer;
+      transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
 
-  /* pre → list of posts | post → list of pres */
-  const preMap  = {};  // preMap[id]  = [ids that come AFTER]
-  const postMap = {};  // postMap[id] = [ids that come BEFORE]
-  edges.forEach(([pre, post]) => {
-    (preMap[pre]  = preMap[pre]  || []).push(post);
-    (postMap[post] = postMap[post] || []).push(pre);
-  });
+    .course.active {
+      opacity: 1;
+      transform: scale(1.05);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+      z-index: 2;
+      position: relative;
+    }
 
-  /* ── 2. DOM SCAN & data-id TAGGING ────────────────── */
-  // SVG <g> nodes: extract id from first .th text content
-  document.querySelectorAll('svg g.p, svg g.t, svg g.g, svg g.a, svg g.c, svg g.s').forEach(g => {
-    const th = g.querySelector('.th');
-    if (!th) return;
-    const m = th.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
-    if (m) g.dataset.id = m[1];
-  });
+    .course.dim {
+      opacity: 0.15;
+    }
 
-  // Mobile .course divs: extract id from .course-name first word
-  document.querySelectorAll('.course').forEach(card => {
-    const nameEl = card.querySelector('.course-name');
-    if (!nameEl) return;
-    const m = nameEl.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
-    if (m) card.dataset.id = m[1];
-  });
+    /* Arrow lines dim too */
+    svg .arr[data-pre][data-post] {
+      transition: opacity 0.18s ease, stroke 0.18s ease;
+    }
 
-  /* ── 3. ID → element(s) lookup map ────────────────── */
-  // Each course id may appear in both SVG and card view
-  const nodeMap = {}; // id → [element, ...]
-  document.querySelectorAll('[data-id]').forEach(el => {
-    const id = el.dataset.id;
-    (nodeMap[id] = nodeMap[id] || []).push(el);
-  });
+    svg .arr.dim-arr {
+      opacity: 0.08;
+    }
 
-  /* ── 4. ARROW TAGGING (SVG only) ──────────────────── */
-  // Tag each .arr line with data-pre / data-post based on edge order
-  // We'll re-derive arrows by matching positional proximity to known node rects
-  // Strategy: for each edge [pre, post], find the arrow <line> whose y1 is near
-  // the bottom of the pre node's rect and y2 near the top of the post node's rect.
-  // Since arrows are structural connectors between semesters (not between individual
-  // nodes), we tag ALL arr lines and dim/activate them all together as a group.
-  const arrLines = document.querySelectorAll('svg line.arr');
+    svg .arr.active-arr {
+      stroke: #2563eb;
+      opacity: 1;
+      stroke-width: 1.8;
+    }
+  </style>
 
-  /* ── 5. RECURSIVE TRAVERSAL ───────────────────────── */
-  function getAllAncestors(id, visited = new Set()) {
-    (postMap[id] || []).forEach(pre => {
-      if (!visited.has(pre)) { visited.add(pre); getAllAncestors(pre, visited); }
-    });
-    return visited;
-  }
-  function getAllDescendants(id, visited = new Set()) {
-    (preMap[id] || []).forEach(post => {
-      if (!visited.has(post)) { visited.add(post); getAllDescendants(post, visited); }
-    });
-    return visited;
-  }
+  <script>
+    (function () {
+      /* ── 1. PREREQUISITE DATA ─────────────────────────── */
+      const edges = [
+        ['ENG101', 'ENG102'], ['MAT101', 'MAT102'], ['CSE103', 'CSE106'],
+        ['MAT102', 'PHY109'], ['MAT101', 'MAT104'], ['CSE106', 'CSE110'],
+        ['ENG102', 'GEN226'], ['MAT102', 'MAT205'], ['CSE110', 'CSE207'],
+        ['CSE209', 'CSE251'], ['ENG102', 'GEN210'], ['MAT205', 'PHY209'],
+        ['CSE207', 'CSE325'], ['ENG102', 'BUS321'], ['CSE207', 'CSE246'],
+        ['CSE106', 'CSE302'], ['CSE251', 'CSE345'], ['CSE302', 'CSE347'],
+        ['STA102', 'CSE303'], ['CSE325', 'CSE360'], ['CSE246', 'CSE405'],
+        ['CSE246', 'CSE366'], ['CSE246', 'CSE460'], ['CSE405', 'CSE407'],
+        ['CSE366', 'CSE475'], ['CSE325', 'CSE452'], ['CSE405', 'CSE487'],
+        ['CSE366', 'CSE474'], ['CSE405', 'CSE473'], ['CSE347', 'CSE495'],
+        ['CSE246', 'CSE445']
+      ];
 
-  /* ── 6. HIGHLIGHT / RESET HELPERS ─────────────────── */
-  function allNodes() {
-    return document.querySelectorAll('[data-id]');
-  }
+      /* pre → list of posts | post → list of pres */
+      const preMap = {};  // preMap[id]  = [ids that come AFTER]
+      const postMap = {};  // postMap[id] = [ids that come BEFORE]
+      edges.forEach(([pre, post]) => {
+        (preMap[pre] = preMap[pre] || []).push(post);
+        (postMap[post] = postMap[post] || []).push(pre);
+      });
 
-  function resetAll() {
-    allNodes().forEach(el => { el.classList.remove('active', 'dim'); });
-    arrLines.forEach(l => l.classList.remove('active-arr', 'dim-arr'));
-  }
+      /* ── 2. DOM SCAN & data-id TAGGING ────────────────── */
+      // SVG <g> nodes: extract id from first .th text content
+      document.querySelectorAll('svg g.p, svg g.t, svg g.g, svg g.a, svg g.c, svg g.s').forEach(g => {
+        const th = g.querySelector('.th');
+        if (!th) return;
+        const m = th.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
+        if (m) g.dataset.id = m[1];
+      });
 
-  function highlight(hoveredId) {
-    const ancestors   = getAllAncestors(hoveredId);
-    const descendants = getAllDescendants(hoveredId);
-    const related     = new Set([hoveredId, ...ancestors, ...descendants]);
+      // Mobile .course divs: extract id from .course-name first word
+      document.querySelectorAll('.course').forEach(card => {
+        const nameEl = card.querySelector('.course-name');
+        if (!nameEl) return;
+        const m = nameEl.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
+        if (m) card.dataset.id = m[1];
+      });
 
-    allNodes().forEach(el => {
-      const id = el.dataset.id;
-      if (id === hoveredId) {
-        el.classList.add('active');
-        el.classList.remove('dim');
-      } else if (related.has(id)) {
-        el.classList.remove('active', 'dim');
-      } else {
-        el.classList.add('dim');
-        el.classList.remove('active');
+      /* ── 3. ID → element(s) lookup map ────────────────── */
+      // Each course id may appear in both SVG and card view
+      const nodeMap = {}; // id → [element, ...]
+      document.querySelectorAll('[data-id]').forEach(el => {
+        const id = el.dataset.id;
+        (nodeMap[id] = nodeMap[id] || []).push(el);
+      });
+
+      /* ── 4. ARROW TAGGING (SVG only) ──────────────────── */
+      // Tag each .arr line with data-pre / data-post based on edge order
+      // We'll re-derive arrows by matching positional proximity to known node rects
+      // Strategy: for each edge [pre, post], find the arrow <line> whose y1 is near
+      // the bottom of the pre node's rect and y2 near the top of the post node's rect.
+      // Since arrows are structural connectors between semesters (not between individual
+      // nodes), we tag ALL arr lines and dim/activate them all together as a group.
+      const arrLines = document.querySelectorAll('svg line.arr');
+
+      /* ── 5. RECURSIVE TRAVERSAL ───────────────────────── */
+      function getAllAncestors(id, visited = new Set()) {
+        (postMap[id] || []).forEach(pre => {
+          if (!visited.has(pre)) { visited.add(pre); getAllAncestors(pre, visited); }
+        });
+        return visited;
       }
-    });
+      function getAllDescendants(id, visited = new Set()) {
+        (preMap[id] || []).forEach(post => {
+          if (!visited.has(post)) { visited.add(post); getAllDescendants(post, visited); }
+        });
+        return visited;
+      }
 
-    // Dim all inter-semester arrows (they're structural, not per-course)
-    arrLines.forEach(l => l.classList.add('dim-arr'));
-  }
+      /* ── 6. HIGHLIGHT / RESET HELPERS ─────────────────── */
+      function allNodes() {
+        return document.querySelectorAll('[data-id]');
+      }
 
-  /* ── 7. EVENT DELEGATION ───────────────────────────── */
-  // SVG container
-  const svg = document.querySelector('#mainSvg');
-  if (svg) {
-    svg.addEventListener('mouseover', e => {
-      const g = e.target.closest('g[data-id]');
-      if (g) highlight(g.dataset.id);
-    });
-    svg.addEventListener('mouseleave', resetAll);
-    svg.addEventListener('mouseout', e => {
-      if (!e.relatedTarget || !svg.contains(e.relatedTarget)) resetAll();
-    });
-  }
+      function resetAll() {
+        allNodes().forEach(el => { el.classList.remove('active', 'dim'); });
+        arrLines.forEach(l => l.classList.remove('active-arr', 'dim-arr'));
+      }
 
-  // Mobile card view
-  const cardView = document.querySelector('.card-view');
-  if (cardView) {
-    cardView.addEventListener('mouseover', e => {
-      const card = e.target.closest('.course[data-id]');
-      if (card) highlight(card.dataset.id);
-    });
-    cardView.addEventListener('mouseleave', resetAll);
+      function highlight(hoveredId) {
+        const ancestors = getAllAncestors(hoveredId);
+        const descendants = getAllDescendants(hoveredId);
+        const related = new Set([hoveredId, ...ancestors, ...descendants]);
 
-    // Touch support for mobile
-    cardView.addEventListener('touchstart', e => {
-      const card = e.target.closest('.course[data-id]');
-      if (!card) { resetAll(); return; }
-      e.preventDefault();
-      // Toggle: if already active, reset; else highlight
-      if (card.classList.contains('active')) { resetAll(); }
-      else { highlight(card.dataset.id); }
-    }, { passive: false });
-  }
-})();
-</script>
+        allNodes().forEach(el => {
+          const id = el.dataset.id;
+          if (id === hoveredId) {
+            el.classList.add('active');
+            el.classList.remove('dim');
+          } else if (related.has(id)) {
+            el.classList.remove('active', 'dim');
+          } else {
+            el.classList.add('dim');
+            el.classList.remove('active');
+          }
+        });
+
+        // Dim all inter-semester arrows (they're structural, not per-course)
+        arrLines.forEach(l => l.classList.add('dim-arr'));
+      }
+
+      /* ── 7. EVENT DELEGATION ───────────────────────────── */
+
+      // ── DESKTOP: SVG hover + click-on-blank-to-reset ──
+      const svg = document.querySelector('#mainSvg');
+      if (svg) {
+        // Hover to highlight
+        svg.addEventListener('mouseover', e => {
+          const g = e.target.closest('g[data-id]');
+          if (g) highlight(g.dataset.id);
+        });
+        // Mouse leaves SVG entirely → reset
+        svg.addEventListener('mouseleave', resetAll);
+        // Click on blank SVG area (not a course node) → reset
+        svg.addEventListener('click', e => {
+          if (!e.target.closest('g[data-id]')) resetAll();
+        });
+      }
+
+      // ── MOBILE: card view hover (mouse) ───────────────
+      const cardView = document.querySelector('.card-view');
+      if (cardView) {
+        cardView.addEventListener('mouseover', e => {
+          const card = e.target.closest('.course[data-id]');
+          if (card) highlight(card.dataset.id);
+        });
+        cardView.addEventListener('mouseleave', resetAll);
+      }
+
+      // ── MOBILE: scroll-aware tap logic ────────────────
+      // Track whether finger moved (scroll) vs stayed still (tap)
+      let didScroll = false;
+      document.addEventListener('touchstart', () => {
+        didScroll = false;
+      }, { passive: true });
+      document.addEventListener('touchmove', () => {
+        didScroll = true;
+      }, { passive: true });
+      document.addEventListener('touchend', e => {
+        if (didScroll) return; // was a scroll, ignore entirely
+        const card = e.target.closest('.course[data-id]');
+        if (card) {
+          // Tap a card: toggle highlight on/off
+          if (card.classList.contains('active')) resetAll();
+          else highlight(card.dataset.id);
+        } else {
+          // Tap blank space: reset
+          resetAll();
+        }
+      }, { passive: true });
+    })();
+  </script>
 
 </body>
 
