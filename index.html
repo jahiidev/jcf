@@ -292,7 +292,7 @@
       }
 
       .legend {
-        padding: 12px 48px;
+        padding: 12px 46px;
       }
     }
   </style>
@@ -307,22 +307,22 @@
 
   <!-- Legend (shown on both views) -->
   <div class="legend">
-    <div class="legend-item">
+    <div class="legend-item" data-cat="p">
       <div class="legend-dot" style="background:var(--purple-bg);border:1px solid var(--purple-border)"></div>Core CSE
     </div>
-    <div class="legend-item">
+    <div class="legend-item" data-cat="t">
       <div class="legend-dot" style="background:var(--teal-bg);border:1px solid var(--teal-border)"></div>Math / English
     </div>
-    <div class="legend-item">
+    <div class="legend-item" data-cat="g">
       <div class="legend-dot" style="background:var(--gray-bg);border:1px solid var(--gray-border)"></div>Gen. / Science
     </div>
-    <div class="legend-item">
+    <div class="legend-item" data-cat="a">
       <div class="legend-dot" style="background:var(--amber-bg);border:1px solid var(--amber-border)"></div>AI / ML
     </div>
-    <div class="legend-item">
+    <div class="legend-item" data-cat="s">
       <div class="legend-dot" style="background:var(--pink-bg);border:1px solid var(--pink-border)"></div>Security
     </div>
-    <div class="legend-item">
+    <div class="legend-item" data-cat="c">
       <div class="legend-dot" style="background:var(--coral-bg);border:1px solid var(--coral-border)"></div>Capstone
     </div>
   </div>
@@ -1048,6 +1048,50 @@
       opacity: 1;
       stroke-width: 1.8;
     }
+
+    /* ── LEGEND INTERACTION ──────────────────────────────── */
+    .legend-item {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 3px 7px 3px 3px;
+      transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+      user-select: none;
+    }
+
+    .legend-item.active {
+      opacity: 1;
+      transform: scale(1.08);
+      font-weight: 600;
+    }
+
+    .legend-item.dim {
+      opacity: 0.2;
+    }
+
+    /* Subtle background tint per category when active */
+    .legend-item[data-cat="p"].active {
+      background: var(--purple-bg);
+    }
+
+    .legend-item[data-cat="t"].active {
+      background: var(--teal-bg);
+    }
+
+    .legend-item[data-cat="g"].active {
+      background: var(--gray-bg);
+    }
+
+    .legend-item[data-cat="a"].active {
+      background: var(--amber-bg);
+    }
+
+    .legend-item[data-cat="s"].active {
+      background: var(--pink-bg);
+    }
+
+    .legend-item[data-cat="c"].active {
+      background: var(--coral-bg);
+    }
   </style>
 
   <script>
@@ -1128,9 +1172,21 @@
         return document.querySelectorAll('[data-id]');
       }
 
+      const legendItems = document.querySelectorAll('.legend-item[data-cat]');
+
       function resetAll() {
         allNodes().forEach(el => { el.classList.remove('active', 'dim'); });
         arrLines.forEach(l => l.classList.remove('active-arr', 'dim-arr'));
+        legendItems.forEach(li => li.classList.remove('active', 'dim'));
+      }
+
+      /* Map class letter → SVG class selector, used to read which category a node belongs to */
+      function getCatOfNode(el) {
+        // For SVG <g> elements and mobile .course divs, the category class is one of p/t/g/a/c/s
+        for (const c of ['p', 't', 'g', 'a', 'c', 's']) {
+          if (el.classList.contains(c)) return c;
+        }
+        return null;
       }
 
       function highlight(hoveredId) {
@@ -1153,6 +1209,33 @@
 
         // Dim all inter-semester arrows (they're structural, not per-course)
         arrLines.forEach(l => l.classList.add('dim-arr'));
+
+
+      }
+
+      function highlightCategory(cat) {
+        // Highlight all course nodes of this category, dim others
+        allNodes().forEach(el => {
+          if (getCatOfNode(el) === cat) {
+            el.classList.add('active');
+            el.classList.remove('dim');
+          } else {
+            el.classList.add('dim');
+            el.classList.remove('active');
+          }
+        });
+        // Dim all arrows
+        arrLines.forEach(l => l.classList.add('dim-arr'));
+        // Legend: active for matching, dim for others
+        legendItems.forEach(li => {
+          if (li.dataset.cat === cat) {
+            li.classList.add('active');
+            li.classList.remove('dim');
+          } else {
+            li.classList.add('dim');
+            li.classList.remove('active');
+          }
+        });
       }
 
       /* ── 7. EVENT DELEGATION ───────────────────────────── */
@@ -1195,15 +1278,30 @@
       document.addEventListener('touchend', e => {
         if (didScroll) return; // was a scroll, ignore entirely
         const card = e.target.closest('.course[data-id]');
+        const legendItem = e.target.closest('.legend-item[data-cat]');
         if (card) {
           // Tap a card: toggle highlight on/off
           if (card.classList.contains('active')) resetAll();
           else highlight(card.dataset.id);
+        } else if (legendItem) {
+          // Tap a legend item: toggle category highlight
+          if (legendItem.classList.contains('active')) resetAll();
+          else highlightCategory(legendItem.dataset.cat);
         } else {
           // Tap blank space: reset
           resetAll();
         }
       }, { passive: true });
+
+      // ── LEGEND: mouse hover ────────────────────────────
+      const legendEl = document.querySelector('.legend');
+      if (legendEl) {
+        legendEl.addEventListener('mouseover', e => {
+          const li = e.target.closest('.legend-item[data-cat]');
+          if (li) highlightCategory(li.dataset.cat);
+        });
+        legendEl.addEventListener('mouseleave', resetAll);
+      }
     })();
   </script>
 
