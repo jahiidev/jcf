@@ -97,6 +97,11 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 3px 7px 3px 3px;
+      transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+      user-select: none;
     }
 
     .legend-dot {
@@ -106,32 +111,83 @@
       flex-shrink: 0;
     }
 
-    /* ── SVG DESKTOP VIEW ────────────────────────────── */
-    .svg-wrap {
-      display: none;
-      padding: 20px;
-      overflow-x: auto;
+    .legend-item.active {
+      opacity: 1;
+      transform: scale(1.08);
+      font-weight: 600;
     }
 
-    .svg-wrap svg {
-      display: block;
-      margin: 0 auto;
-      max-width: 85%;
-      height: auto;
+    .legend-item.dim {
+      opacity: 0.2;
     }
 
-    /* ── MOBILE CARD VIEW ────────────────────────────── */
+    /* Subtle background tint per category when active */
+    .legend-item[data-cat="p"].active {
+      background: var(--purple-bg);
+    }
+
+    .legend-item[data-cat="t"].active {
+      background: var(--teal-bg);
+    }
+
+    .legend-item[data-cat="g"].active {
+      background: var(--gray-bg);
+    }
+
+    .legend-item[data-cat="a"].active {
+      background: var(--amber-bg);
+    }
+
+    .legend-item[data-cat="s"].active {
+      background: var(--pink-bg);
+    }
+
+    .legend-item[data-cat="c"].active {
+      background: var(--coral-bg);
+    }
+
+    /* ── SWIMLANE CARD VIEW ──────────────────────────── */
     .card-view {
-      display: block;
+      display: flex;
+      flex-direction: column;
       padding: 12px 12px 32px;
+      gap: 12px;
     }
 
-    /* Year section */
+    /* On wider screens: horizontal swimlane row */
+    @media (min-width: 720px) {
+      .card-view {
+        flex-direction: row;
+        align-items: stretch;
+        padding: 16px 16px 32px;
+        overflow-x: auto;
+      }
+
+      header {
+        padding: 24px 48px 18px;
+      }
+
+      .legend {
+        padding: 12px 46px;
+      }
+    }
+
+    /* Year swimlane column */
     .year-block {
       border: 1px dashed var(--year-border);
       border-radius: 12px;
-      margin-bottom: 14px;
       overflow: hidden;
+      /* Mobile: full width */
+      width: 100%;
+    }
+
+    @media (min-width: 720px) {
+      .year-block {
+        /* Equal-width columns that grow to fill screen */
+        flex: 1 1 0;
+        min-width: 220px;
+        width: auto;
+      }
     }
 
     .year-label {
@@ -159,10 +215,10 @@
       text-transform: uppercase;
     }
 
-    /* Course grid */
+    /* Course grid — single column inside swimlane */
     .courses {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: 1fr;
       gap: 7px;
     }
 
@@ -175,6 +231,8 @@
       display: flex;
       flex-direction: column;
       gap: 3px;
+      cursor: pointer;
+      transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     .course-name {
@@ -268,32 +326,17 @@
       color: var(--pink-sub);
     }
 
-    /* year arrow connector */
-    .yr-arrow {
-      text-align: center;
-      font-size: 18px;
-      color: var(--year-border);
-      margin: 2px 0 10px;
-      user-select: none;
+    /* ── HOVER / HIGHLIGHT INTERACTION ──────────────── */
+    .course.active {
+      opacity: 1;
+      transform: scale(1.05);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+      z-index: 2;
+      position: relative;
     }
 
-    /* ── RESPONSIVE: show SVG on wider screens ───────── */
-    @media (min-width: 720px) {
-      .svg-wrap {
-        display: block;
-      }
-
-      .card-view {
-        display: none;
-      }
-
-      header {
-        padding: 24px 48px 18px;
-      }
-
-      .legend {
-        padding: 12px 46px;
-      }
+    .course.dim {
+      opacity: 0.15;
     }
   </style>
 </head>
@@ -305,7 +348,7 @@
     <span>B.Sc. in Computer Science &amp; Engineering</span>
   </header>
 
-  <!-- Legend (shown on both views) -->
+  <!-- Legend -->
   <div class="legend">
     <div class="legend-item" data-cat="p">
       <div class="legend-dot" style="background:var(--purple-bg);border:1px solid var(--purple-border)"></div>Core CSE
@@ -327,405 +370,7 @@
     </div>
   </div>
 
-  <!-- ── DESKTOP: original SVG ─────────────────────── -->
-  <div class="svg-wrap">
-    <svg id="mainSvg" width="100%" viewBox="0 0 680 1945" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
-          orient="auto-start-reverse">
-          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
-            stroke-linejoin="round" />
-        </marker>
-        <style>
-          .yr {
-            fill: none;
-            stroke: #888780;
-            stroke-width: .8;
-            stroke-dasharray: 4 3
-          }
-
-          .sm {
-            fill: none;
-            stroke: #b4b2a9;
-            stroke-width: .5
-          }
-
-          .lbl {
-            font-family: sans-serif;
-            font-size: 11px;
-            fill: #5f5e5a
-          }
-
-          .ylbl {
-            font-family: sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            fill: #2c2c2a
-          }
-
-          .ttl {
-            font-family: sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            fill: #2c2c2a
-          }
-
-          .th {
-            font-family: sans-serif;
-            font-size: 11.5px;
-            font-weight: 500
-          }
-
-          .ts {
-            font-family: sans-serif;
-            font-size: 10px
-          }
-
-          .arr {
-            stroke: #888780;
-            stroke-width: 1.2;
-            fill: none;
-            marker-end: url(#arrow)
-          }
-
-          .p rect {
-            fill: #EEEDFE;
-            stroke: #534AB7;
-            stroke-width: .5
-          }
-
-          .p .th {
-            fill: #3C3489
-          }
-
-          .p .ts {
-            fill: #534AB7
-          }
-
-          .t rect {
-            fill: #E1F5EE;
-            stroke: #0F6E56;
-            stroke-width: .5
-          }
-
-          .t .th {
-            fill: #085041
-          }
-
-          .t .ts {
-            fill: #0F6E56
-          }
-
-          .g rect {
-            fill: #F1EFE8;
-            stroke: #5F5E5A;
-            stroke-width: .5
-          }
-
-          .g .th {
-            fill: #444441
-          }
-
-          .g .ts {
-            fill: #5F5E5A
-          }
-
-          .a rect {
-            fill: #FAEEDA;
-            stroke: #854F0B;
-            stroke-width: .5
-          }
-
-          .a .th {
-            fill: #633806
-          }
-
-          .a .ts {
-            fill: #854F0B
-          }
-
-          .c rect {
-            fill: #FAECE7;
-            stroke: #993C1D;
-            stroke-width: .5
-          }
-
-          .c .th {
-            fill: #712B13
-          }
-
-          .c .ts {
-            fill: #993C1D
-          }
-
-          .s rect {
-            fill: #FBEAF0;
-            stroke: #993556;
-            stroke-width: .5
-          }
-
-          .s .th {
-            fill: #72243E
-          }
-
-          .s .ts {
-            fill: #993556
-          }
-        </style>
-      </defs>
-      <!-- YEAR 1 -->
-      <rect class="yr" x="18" y="38" width="640" height="430" rx="12" />
-      <text class="ylbl" x="30" y="57">Year 1</text>
-      <rect class="sm" x="26" y="64" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="81">Semester 1</text>
-      <g class="t">
-        <rect x="38" y="86" width="184" height="42" rx="6" /><text class="th" x="130" y="103" text-anchor="middle"
-          dominant-baseline="central">ENG101 Basic English</text><text class="ts" x="130" y="119" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="t">
-        <rect x="232" y="86" width="188" height="42" rx="6" /><text class="th" x="326" y="103" text-anchor="middle"
-          dominant-baseline="central">MAT101 Diff. &amp; Int. Calculus</text><text class="ts" x="326" y="119"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="430" y="86" width="202" height="42" rx="6" /><text class="th" x="531" y="103" text-anchor="middle"
-          dominant-baseline="central">CSE103 Structured Prog.</text><text class="ts" x="531" y="119"
-          text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="188" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="205">Semester 2</text>
-      <g class="t">
-        <rect x="38" y="210" width="138" height="42" rx="6" /><text class="th" x="107" y="227" text-anchor="middle"
-          dominant-baseline="central">ENG102 Comp. &amp; Comm.</text><text class="ts" x="107" y="243"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="t">
-        <rect x="186" y="210" width="152" height="42" rx="6" /><text class="th" x="262" y="227" text-anchor="middle"
-          dominant-baseline="central">MAT102 Diff. Eqn.</text><text class="ts" x="262" y="243" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="348" y="210" width="142" height="42" rx="6" /><text class="th" x="419" y="227" text-anchor="middle"
-          dominant-baseline="central">CSE106 Discrete Math</text><text class="ts" x="419" y="243" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="g">
-        <rect x="500" y="210" width="142" height="42" rx="6" /><text class="th" x="571" y="227" text-anchor="middle"
-          dominant-baseline="central">CHE109 Eng. Chemistry</text><text class="ts" x="571" y="243" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="312" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="329">Semester 3</text>
-      <g class="g">
-        <rect x="38" y="334" width="184" height="42" rx="6" /><text class="th" x="130" y="351" text-anchor="middle"
-          dominant-baseline="central">PHY109 Eng. Physics I</text><text class="ts" x="130" y="367" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="t">
-        <rect x="232" y="334" width="188" height="42" rx="6" /><text class="th" x="326" y="351" text-anchor="middle"
-          dominant-baseline="central">MAT104 Coord. Geom. &amp; Vec.</text><text class="ts" x="326" y="367"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="430" y="334" width="202" height="42" rx="6" /><text class="th" x="531" y="351" text-anchor="middle"
-          dominant-baseline="central">CSE110 OOP</text><text class="ts" x="531" y="367" text-anchor="middle"
-          dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <line class="arr" x1="340" y1="490" x2="340" y2="512" />
-      <!-- YEAR 2 -->
-      <rect class="yr" x="18" y="516" width="640" height="430" rx="12" />
-      <text class="ylbl" x="30" y="535">Year 2</text>
-      <rect class="sm" x="26" y="542" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="559">Semester 1</text>
-      <g class="g">
-        <rect x="38" y="564" width="142" height="42" rx="6" /><text class="th" x="109" y="581" text-anchor="middle"
-          dominant-baseline="central">GEN226 Emergence of BD</text><text class="ts" x="109" y="597" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="t">
-        <rect x="190" y="564" width="152" height="42" rx="6" /><text class="th" x="266" y="581" text-anchor="middle"
-          dominant-baseline="central">STA102 Stats &amp; Prob.</text><text class="ts" x="266" y="597"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="352" y="564" width="138" height="42" rx="6" /><text class="th" x="421" y="581" text-anchor="middle"
-          dominant-baseline="central">CSE200 CAE Drawing</text><text class="ts" x="421" y="597" text-anchor="middle"
-          dominant-baseline="central">1 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="500" y="564" width="142" height="42" rx="6" /><text class="th" x="571" y="581" text-anchor="middle"
-          dominant-baseline="central">CSE209 Elec. Circuits</text><text class="ts" x="571" y="597" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="666" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="683">Semester 2</text>
-      <g class="g">
-        <rect x="38" y="688" width="142" height="42" rx="6" /><text class="th" x="109" y="705" text-anchor="middle"
-          dominant-baseline="central">SOC317 Sociology S&amp;T</text><text class="ts" x="109" y="721"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="t">
-        <rect x="190" y="688" width="152" height="42" rx="6" /><text class="th" x="266" y="705" text-anchor="middle"
-          dominant-baseline="central">MAT205 Lin. Alg. &amp; Cmplx.</text><text class="ts" x="266" y="721"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="352" y="688" width="138" height="42" rx="6" /><text class="th" x="421" y="705" text-anchor="middle"
-          dominant-baseline="central">CSE207 Data Structures</text><text class="ts" x="421" y="721" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="500" y="688" width="142" height="42" rx="6" /><text class="th" x="571" y="705" text-anchor="middle"
-          dominant-baseline="central">CSE251 Electronic Ckt.</text><text class="ts" x="571" y="721" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="790" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="807">Semester 3</text>
-      <g class="g">
-        <rect x="38" y="812" width="188" height="42" rx="6" /><text class="th" x="132" y="829" text-anchor="middle"
-          dominant-baseline="central">GEN210 International Rel.</text><text class="ts" x="132" y="845"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="g">
-        <rect x="236" y="812" width="188" height="42" rx="6" /><text class="th" x="330" y="829" text-anchor="middle"
-          dominant-baseline="central">PHY209 Eng. Physics II</text><text class="ts" x="330" y="845" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="434" y="812" width="198" height="42" rx="6" /><text class="th" x="533" y="829" text-anchor="middle"
-          dominant-baseline="central">CSE325 Operating Systems</text><text class="ts" x="533" y="845"
-          text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <line class="arr" x1="340" y1="968" x2="340" y2="990" />
-      <!-- YEAR 3 -->
-      <rect class="yr" x="18" y="994" width="640" height="430" rx="12" />
-      <text class="ylbl" x="30" y="1013">Year 3</text>
-      <rect class="sm" x="26" y="1020" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="1037">Semester 1</text>
-      <g class="g">
-        <rect x="38" y="1042" width="188" height="42" rx="6" /><text class="th" x="132" y="1059" text-anchor="middle"
-          dominant-baseline="central">BUS321 Business for Eng.</text><text class="ts" x="132" y="1075"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="p">
-        <rect x="236" y="1042" width="188" height="42" rx="6" /><text class="th" x="330" y="1059" text-anchor="middle"
-          dominant-baseline="central">CSE246 Algorithms</text><text class="ts" x="330" y="1075" text-anchor="middle"
-          dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="434" y="1042" width="198" height="42" rx="6" /><text class="th" x="533" y="1059" text-anchor="middle"
-          dominant-baseline="central">CSE302 Database Systems</text><text class="ts" x="533" y="1075"
-          text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
-      </g>
-      <rect class="sm" x="26" y="1144" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="1161">Semester 2</text>
-      <g class="p">
-        <rect x="38" y="1166" width="188" height="42" rx="6" /><text class="th" x="132" y="1183" text-anchor="middle"
-          dominant-baseline="central">CSE345 Digital Logic Design</text><text class="ts" x="132" y="1199"
-          text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="p">
-        <rect x="236" y="1166" width="188" height="42" rx="6" /><text class="th" x="330" y="1183" text-anchor="middle"
-          dominant-baseline="central">CSE347 IS Analysis &amp; Design</text><text class="ts" x="330" y="1199"
-          text-anchor="middle" dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="t">
-        <rect x="434" y="1166" width="198" height="42" rx="6" /><text class="th" x="533" y="1183" text-anchor="middle"
-          dominant-baseline="central">CSE303 Stats for Data Sci.</text><text class="ts" x="533" y="1199"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <rect class="sm" x="26" y="1268" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="1285">Semester 3</text>
-      <g class="p">
-        <rect x="38" y="1290" width="142" height="42" rx="6" /><text class="th" x="109" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE360 Comp. Arch.</text><text class="ts" x="109" y="1323" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="p">
-        <rect x="190" y="1290" width="150" height="42" rx="6" /><text class="th" x="265" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE405 Networks</text><text class="ts" x="265" y="1323" text-anchor="middle"
-          dominant-baseline="central">4 cr (lab)</text>
-      </g>
-      <g class="a">
-        <rect x="350" y="1290" width="148" height="42" rx="6" /><text class="th" x="424" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE366 Art. Intelligence</text><text class="ts" x="424" y="1323"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="s">
-        <rect x="508" y="1290" width="124" height="42" rx="6" /><text class="th" x="570" y="1307" text-anchor="middle"
-          dominant-baseline="central">CSE460 Cryptography</text><text class="ts" x="570" y="1323" text-anchor="middle"
-          dominant-baseline="central">elective</text>
-      </g>
-      <line class="arr" x1="340" y1="1446" x2="340" y2="1468" />
-      <!-- YEAR 4 -->
-      <rect class="yr" x="18" y="1472" width="640" height="430" rx="12" />
-      <text class="ylbl" x="30" y="1491">Year 4</text>
-      <rect class="sm" x="26" y="1498" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="1515">Semester 1</text>
-      <g class="c">
-        <rect x="38" y="1520" width="130" height="42" rx="6" /><text class="th" x="103" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE400 Capstone I</text><text class="ts" x="103" y="1553" text-anchor="middle"
-          dominant-baseline="central">1 cr</text>
-      </g>
-      <g class="g">
-        <rect x="178" y="1520" width="142" height="42" rx="6" /><text class="th" x="249" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE407 Green Computing</text><text class="ts" x="249" y="1553"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="a">
-        <rect x="330" y="1520" width="152" height="42" rx="6" /><text class="th" x="406" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE475 Machine Learning</text><text class="ts" x="406" y="1553"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="p">
-        <rect x="492" y="1520" width="150" height="42" rx="6" /><text class="th" x="567" y="1537" text-anchor="middle"
-          dominant-baseline="central">CSE452 Distributed Sys.</text><text class="ts" x="567" y="1553"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <rect class="sm" x="26" y="1622" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="1639">Semester 2</text>
-      <g class="c">
-        <rect x="38" y="1644" width="130" height="42" rx="6" /><text class="th" x="103" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE400 Capstone II</text><text class="ts" x="103" y="1677" text-anchor="middle"
-          dominant-baseline="central">2 cr</text>
-      </g>
-      <g class="s">
-        <rect x="178" y="1644" width="158" height="42" rx="6" /><text class="th" x="257" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE487 Cyber Sec. &amp; Law</text><text class="ts" x="257" y="1677"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="a">
-        <rect x="346" y="1644" width="148" height="42" rx="6" /><text class="th" x="420" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE474 Pattern Recognition</text><text class="ts" x="420" y="1677"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <g class="s">
-        <rect x="504" y="1644" width="138" height="42" rx="6" /><text class="th" x="573" y="1661" text-anchor="middle"
-          dominant-baseline="central">CSE473 Network Security</text><text class="ts" x="573" y="1677"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-      <rect class="sm" x="26" y="1746" width="622" height="100" rx="8" />
-      <text class="lbl" x="38" y="1763">Semester 3</text>
-      <g class="c">
-        <rect x="38" y="1768" width="130" height="42" rx="6" /><text class="th" x="103" y="1785" text-anchor="middle"
-          dominant-baseline="central">CSE400 Capstone III</text><text class="ts" x="103" y="1801" text-anchor="middle"
-          dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="g">
-        <rect x="178" y="1768" width="150" height="42" rx="6" /><text class="th" x="253" y="1785" text-anchor="middle"
-          dominant-baseline="central">CSE495 IT PM &amp; Entrep.</text><text class="ts" x="253" y="1801"
-          text-anchor="middle" dominant-baseline="central">3 cr</text>
-      </g>
-      <g class="a">
-        <rect x="338" y="1768" width="152" height="42" rx="6" /><text class="th" x="414" y="1785" text-anchor="middle"
-          dominant-baseline="central">CSE445 Computer Vision</text><text class="ts" x="414" y="1801"
-          text-anchor="middle" dominant-baseline="central">elective</text>
-      </g>
-    </svg>
-  </div>
-
-  <!-- ── MOBILE: card layout ────────────────────────── -->
+  <!-- ── SWIMLANE CARD VIEW ─────────────────────────── -->
   <div class="card-view">
 
     <!-- YEAR 1 -->
@@ -790,7 +435,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- YEAR 2 -->
     <div class="year-block">
       <div class="year-label">Year 2</div>
@@ -857,7 +502,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- YEAR 3 -->
     <div class="year-block">
       <div class="year-label">Year 3</div>
@@ -920,7 +565,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- YEAR 4 -->
     <div class="year-block">
       <div class="year-label">Year 4</div>
@@ -987,106 +632,8 @@
         </div>
       </div>
     </div>
+
   </div>
-
-
-  <style>
-    /* ── HOVER INTERACTION ───────────────────────────────── */
-
-    /* SVG <g> nodes */
-    svg g[data-id] {
-      cursor: pointer;
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      transform-origin: center;
-      transform-box: fill-box;
-    }
-
-    svg g[data-id].active {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    svg g[data-id].dim {
-      opacity: 0.15;
-    }
-
-    /* Mobile .course cards */
-    .course {
-      cursor: pointer;
-      transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .course.active {
-      opacity: 1;
-      transform: scale(1.05);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
-      z-index: 2;
-      position: relative;
-    }
-
-    .course.dim {
-      opacity: 0.15;
-    }
-
-    /* Arrow lines dim too */
-    svg .arr[data-pre][data-post] {
-      transition: opacity 0.18s ease, stroke 0.18s ease;
-    }
-
-    svg .arr.dim-arr {
-      opacity: 0.08;
-    }
-
-    svg .arr.active-arr {
-      stroke: #2563eb;
-      opacity: 1;
-      stroke-width: 1.8;
-    }
-
-    /* ── LEGEND INTERACTION ──────────────────────────────── */
-    .legend-item {
-      cursor: pointer;
-      border-radius: 6px;
-      padding: 3px 7px 3px 3px;
-      transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
-      user-select: none;
-    }
-
-    .legend-item.active {
-      opacity: 1;
-      transform: scale(1.08);
-      font-weight: 600;
-    }
-
-    .legend-item.dim {
-      opacity: 0.2;
-    }
-
-    /* Subtle background tint per category when active */
-    .legend-item[data-cat="p"].active {
-      background: var(--purple-bg);
-    }
-
-    .legend-item[data-cat="t"].active {
-      background: var(--teal-bg);
-    }
-
-    .legend-item[data-cat="g"].active {
-      background: var(--gray-bg);
-    }
-
-    .legend-item[data-cat="a"].active {
-      background: var(--amber-bg);
-    }
-
-    .legend-item[data-cat="s"].active {
-      background: var(--pink-bg);
-    }
-
-    .legend-item[data-cat="c"].active {
-      background: var(--coral-bg);
-    }
-  </style>
 
   <script>
     (function () {
@@ -1106,23 +653,14 @@
       ];
 
       /* pre → list of posts | post → list of pres */
-      const preMap = {};  // preMap[id]  = [ids that come AFTER]
-      const postMap = {};  // postMap[id] = [ids that come BEFORE]
+      const preMap = {};
+      const postMap = {};
       edges.forEach(([pre, post]) => {
         (preMap[pre] = preMap[pre] || []).push(post);
         (postMap[post] = postMap[post] || []).push(pre);
       });
 
       /* ── 2. DOM SCAN & data-id TAGGING ────────────────── */
-      // SVG <g> nodes: extract id from first .th text content
-      document.querySelectorAll('svg g.p, svg g.t, svg g.g, svg g.a, svg g.c, svg g.s').forEach(g => {
-        const th = g.querySelector('.th');
-        if (!th) return;
-        const m = th.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
-        if (m) g.dataset.id = m[1];
-      });
-
-      // Mobile .course divs: extract id from .course-name first word
       document.querySelectorAll('.course').forEach(card => {
         const nameEl = card.querySelector('.course-name');
         if (!nameEl) return;
@@ -1131,23 +669,13 @@
       });
 
       /* ── 3. ID → element(s) lookup map ────────────────── */
-      // Each course id may appear in both SVG and card view
-      const nodeMap = {}; // id → [element, ...]
+      const nodeMap = {};
       document.querySelectorAll('[data-id]').forEach(el => {
         const id = el.dataset.id;
         (nodeMap[id] = nodeMap[id] || []).push(el);
       });
 
-      /* ── 4. ARROW TAGGING (SVG only) ──────────────────── */
-      // Tag each .arr line with data-pre / data-post based on edge order
-      // We'll re-derive arrows by matching positional proximity to known node rects
-      // Strategy: for each edge [pre, post], find the arrow <line> whose y1 is near
-      // the bottom of the pre node's rect and y2 near the top of the post node's rect.
-      // Since arrows are structural connectors between semesters (not between individual
-      // nodes), we tag ALL arr lines and dim/activate them all together as a group.
-      const arrLines = document.querySelectorAll('svg line.arr');
-
-      /* ── 5. RECURSIVE TRAVERSAL ───────────────────────── */
+      /* ── 4. RECURSIVE TRAVERSAL ───────────────────────── */
       function getAllAncestors(id, visited = new Set()) {
         (postMap[id] || []).forEach(pre => {
           if (!visited.has(pre)) { visited.add(pre); getAllAncestors(pre, visited); }
@@ -1161,7 +689,7 @@
         return visited;
       }
 
-      /* ── 6. HIGHLIGHT / RESET HELPERS ─────────────────── */
+      /* ── 5. HIGHLIGHT / RESET HELPERS ─────────────────── */
       function allNodes() {
         return document.querySelectorAll('[data-id]');
       }
@@ -1170,13 +698,10 @@
 
       function resetAll() {
         allNodes().forEach(el => { el.classList.remove('active', 'dim'); });
-        arrLines.forEach(l => l.classList.remove('active-arr', 'dim-arr'));
         legendItems.forEach(li => li.classList.remove('active', 'dim'));
       }
 
-      /* Map class letter → SVG class selector, used to read which category a node belongs to */
       function getCatOfNode(el) {
-        // For SVG <g> elements and mobile .course divs, the category class is one of p/t/g/a/c/s
         for (const c of ['p', 't', 'g', 'a', 'c', 's']) {
           if (el.classList.contains(c)) return c;
         }
@@ -1200,15 +725,9 @@
             el.classList.remove('active');
           }
         });
-
-        // Dim all inter-semester arrows (they're structural, not per-course)
-        arrLines.forEach(l => l.classList.add('dim-arr'));
-
-
       }
 
       function highlightCategory(cat) {
-        // Highlight all course nodes of this category, dim others
         allNodes().forEach(el => {
           if (getCatOfNode(el) === cat) {
             el.classList.add('active');
@@ -1218,9 +737,6 @@
             el.classList.remove('active');
           }
         });
-        // Dim all arrows
-        arrLines.forEach(l => l.classList.add('dim-arr'));
-        // Legend: active for matching, dim for others
         legendItems.forEach(li => {
           if (li.dataset.cat === cat) {
             li.classList.add('active');
@@ -1232,25 +748,9 @@
         });
       }
 
-      /* ── 7. EVENT DELEGATION ───────────────────────────── */
+      /* ── 6. EVENT DELEGATION ───────────────────────────── */
 
-      // ── DESKTOP: SVG hover + click-on-blank-to-reset ──
-      const svg = document.querySelector('#mainSvg');
-      if (svg) {
-        // Hover to highlight
-        svg.addEventListener('mouseover', e => {
-          const g = e.target.closest('g[data-id]');
-          if (g) highlight(g.dataset.id);
-        });
-        // Mouse leaves SVG entirely → reset
-        svg.addEventListener('mouseleave', resetAll);
-        // Click on blank SVG area (not a course node) → reset
-        svg.addEventListener('click', e => {
-          if (!e.target.closest('g[data-id]')) resetAll();
-        });
-      }
-
-      // ── MOBILE: card view hover (mouse) ───────────────
+      // Card view hover (mouse)
       const cardView = document.querySelector('.card-view');
       if (cardView) {
         cardView.addEventListener('mouseover', e => {
@@ -1260,8 +760,7 @@
         cardView.addEventListener('mouseleave', resetAll);
       }
 
-      // ── MOBILE: scroll-aware tap logic ────────────────
-      // Track whether finger moved (scroll) vs stayed still (tap)
+      // Scroll-aware tap logic (touch)
       let didScroll = false;
       document.addEventListener('touchstart', () => {
         didScroll = false;
@@ -1270,24 +769,21 @@
         didScroll = true;
       }, { passive: true });
       document.addEventListener('touchend', e => {
-        if (didScroll) return; // was a scroll, ignore entirely
+        if (didScroll) return;
         const card = e.target.closest('.course[data-id]');
         const legendItem = e.target.closest('.legend-item[data-cat]');
         if (card) {
-          // Tap a card: toggle highlight on/off
           if (card.classList.contains('active')) resetAll();
           else highlight(card.dataset.id);
         } else if (legendItem) {
-          // Tap a legend item: toggle category highlight
           if (legendItem.classList.contains('active')) resetAll();
           else highlightCategory(legendItem.dataset.cat);
         } else {
-          // Tap blank space: reset
           resetAll();
         }
       }, { passive: true });
 
-      // ── LEGEND: mouse hover ────────────────────────────
+      // Legend mouse hover
       const legendEl = document.querySelector('.legend');
       if (legendEl) {
         legendEl.addEventListener('mouseover', e => {
