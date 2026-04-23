@@ -327,7 +327,7 @@
 
   <!-- ── DESKTOP: original SVG ─────────────────────── -->
   <div class="svg-wrap">
-    <svg id="mainSvg" width="100%" viewBox="0 0 680 2020" xmlns="http://www.w3.org/2000/svg">
+    <svg id="mainSvg" width="100%" viewBox="0 0 680 2040" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
           orient="auto-start-reverse">
@@ -658,7 +658,7 @@
       </g>
       <line class="arr" x1="340" y1="1446" x2="340" y2="1468" />
       <!-- YEAR 4 -->
-      <rect class="yr" x="18" y="1472" width="644" height="502" rx="12" />
+      <rect class="yr" x="18" y="1472" width="644" height="545" rx="12" />
       <text class="ylbl" x="30" y="1491">Year 4</text>
       <rect class="sm" x="26" y="1498" width="622" height="116" rx="8" />
       <text class="lbl" x="38" y="1515">Semester 1</text>
@@ -1188,34 +1188,17 @@
       const card = e.target.closest('.course[data-id]');
       if (card) highlight(card.dataset.id);
     });
+    cardView.addEventListener('mouseleave', resetAll);
 
-    // Scroll-aware tap detection
-    let touchStartY = 0;
-    let touchStartX = 0;
-    let didScroll = false;
-
-    document.addEventListener('touchstart', e => {
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-      didScroll = false;
-    }, { passive: true });
-
-    document.addEventListener('touchmove', () => {
-      didScroll = true;
-    }, { passive: true });
-
-    document.addEventListener('touchend', e => {
-      if (didScroll) return; // finger was scrolling, ignore
+    // Touch support for mobile
+    cardView.addEventListener('touchstart', e => {
       const card = e.target.closest('.course[data-id]');
-      if (card) {
-        // Tap on a card: toggle or switch highlight
-        if (card.classList.contains('active')) resetAll();
-        else highlight(card.dataset.id);
-      } else {
-        // Tap on blank space: reset
-        resetAll();
-      }
-    }, { passive: true });
+      if (!card) { resetAll(); return; }
+      e.preventDefault();
+      // Toggle: if already active, reset; else highlight
+      if (card.classList.contains('active')) { resetAll(); }
+      else { highlight(card.dataset.id); }
+    }, { passive: false });
   }
 })();
 </script>
