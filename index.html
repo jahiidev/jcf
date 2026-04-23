@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jhd Course Flowchart</title>
-  <link rel="icon" type="image/png" href="/jcf/favicon_192.png">
+  <link rel="icon" type="image/png" href="favicon_192.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
@@ -69,7 +69,7 @@
     }
 
     header h1 {
-      font-size: clamp(15px, 4vw, 19px);
+      font-size: clamp(18px, 10vw, 24px);
       font-weight: 600;
       letter-spacing: -0.3px;
       color: var(--text-dark);
@@ -77,7 +77,7 @@
 
     header span {
       font-family: var(--fm);
-      font-size: 11px;
+      font-size: 13px;
       color: var(--text-mid);
       opacity: .7;
     }
@@ -89,7 +89,7 @@
       gap: 8px 14px;
       padding: 12px 16px;
       border-bottom: 1px solid var(--sem-border);
-      font-size: 11px;
+      font-size: 15px;
       color: var(--text-mid);
     }
 
@@ -100,8 +100,8 @@
     }
 
     .legend-dot {
-      width: 10px;
-      height: 10px;
+      width: 18px;
+      height: 18px;
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -114,7 +114,9 @@
     }
 
     .svg-wrap svg {
-      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      max-width: 85%;
       height: auto;
     }
 
@@ -286,11 +288,11 @@
       }
 
       header {
-        padding: 24px 24px 18px;
+        padding: 24px 48px 18px;
       }
 
       .legend {
-        padding: 12px 24px;
+        padding: 12px 48px;
       }
     }
   </style>
@@ -327,7 +329,7 @@
 
   <!-- ── DESKTOP: original SVG ─────────────────────── -->
   <div class="svg-wrap">
-    <svg id="mainSvg" width="100%" viewBox="0 0 680 2040" xmlns="http://www.w3.org/2000/svg">
+    <svg id="mainSvg" width="100%" viewBox="0 0 680 1945" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
           orient="auto-start-reverse">
@@ -471,11 +473,10 @@
           }
         </style>
       </defs>
-      <text class="ttl" x="340" y="26" text-anchor="middle">Jhd Course Flowchart</text>
       <!-- YEAR 1 -->
-      <rect class="yr" x="18" y="38" width="640" height="452" rx="12" />
+      <rect class="yr" x="18" y="38" width="640" height="430" rx="12" />
       <text class="ylbl" x="30" y="57">Year 1</text>
-      <rect class="sm" x="26" y="64" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="64" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="81">Semester 1</text>
       <g class="t">
         <rect x="38" y="86" width="184" height="42" rx="6" /><text class="th" x="130" y="103" text-anchor="middle"
@@ -492,7 +493,7 @@
           dominant-baseline="central">CSE103 Structured Prog.</text><text class="ts" x="531" y="119"
           text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
       </g>
-      <rect class="sm" x="26" y="188" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="188" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="205">Semester 2</text>
       <g class="t">
         <rect x="38" y="210" width="138" height="42" rx="6" /><text class="th" x="107" y="227" text-anchor="middle"
@@ -514,7 +515,7 @@
           dominant-baseline="central">CHE109 Eng. Chemistry</text><text class="ts" x="571" y="243" text-anchor="middle"
           dominant-baseline="central">4 cr (lab)</text>
       </g>
-      <rect class="sm" x="26" y="312" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="312" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="329">Semester 3</text>
       <g class="g">
         <rect x="38" y="334" width="184" height="42" rx="6" /><text class="th" x="130" y="351" text-anchor="middle"
@@ -533,9 +534,9 @@
       </g>
       <line class="arr" x1="340" y1="490" x2="340" y2="512" />
       <!-- YEAR 2 -->
-      <rect class="yr" x="18" y="516" width="640" height="452" rx="12" />
+      <rect class="yr" x="18" y="516" width="640" height="430" rx="12" />
       <text class="ylbl" x="30" y="535">Year 2</text>
-      <rect class="sm" x="26" y="542" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="542" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="559">Semester 1</text>
       <g class="g">
         <rect x="38" y="564" width="142" height="42" rx="6" /><text class="th" x="109" y="581" text-anchor="middle"
@@ -557,7 +558,7 @@
           dominant-baseline="central">CSE209 Elec. Circuits</text><text class="ts" x="571" y="597" text-anchor="middle"
           dominant-baseline="central">4 cr (lab)</text>
       </g>
-      <rect class="sm" x="26" y="666" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="666" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="683">Semester 2</text>
       <g class="g">
         <rect x="38" y="688" width="142" height="42" rx="6" /><text class="th" x="109" y="705" text-anchor="middle"
@@ -579,7 +580,7 @@
           dominant-baseline="central">CSE251 Electronic Ckt.</text><text class="ts" x="571" y="721" text-anchor="middle"
           dominant-baseline="central">4 cr (lab)</text>
       </g>
-      <rect class="sm" x="26" y="790" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="790" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="807">Semester 3</text>
       <g class="g">
         <rect x="38" y="812" width="188" height="42" rx="6" /><text class="th" x="132" y="829" text-anchor="middle"
@@ -598,9 +599,9 @@
       </g>
       <line class="arr" x1="340" y1="968" x2="340" y2="990" />
       <!-- YEAR 3 -->
-      <rect class="yr" x="18" y="994" width="640" height="452" rx="12" />
+      <rect class="yr" x="18" y="994" width="640" height="430" rx="12" />
       <text class="ylbl" x="30" y="1013">Year 3</text>
-      <rect class="sm" x="26" y="1020" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="1020" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="1037">Semester 1</text>
       <g class="g">
         <rect x="38" y="1042" width="188" height="42" rx="6" /><text class="th" x="132" y="1059" text-anchor="middle"
@@ -617,7 +618,7 @@
           dominant-baseline="central">CSE302 Database Systems</text><text class="ts" x="533" y="1075"
           text-anchor="middle" dominant-baseline="central">4.5 cr (lab)</text>
       </g>
-      <rect class="sm" x="26" y="1144" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="1144" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="1161">Semester 2</text>
       <g class="p">
         <rect x="38" y="1166" width="188" height="42" rx="6" /><text class="th" x="132" y="1183" text-anchor="middle"
@@ -634,7 +635,7 @@
           dominant-baseline="central">CSE303 Stats for Data Sci.</text><text class="ts" x="533" y="1199"
           text-anchor="middle" dominant-baseline="central">elective</text>
       </g>
-      <rect class="sm" x="26" y="1268" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="1268" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="1285">Semester 3</text>
       <g class="p">
         <rect x="38" y="1290" width="142" height="42" rx="6" /><text class="th" x="109" y="1307" text-anchor="middle"
@@ -658,9 +659,9 @@
       </g>
       <line class="arr" x1="340" y1="1446" x2="340" y2="1468" />
       <!-- YEAR 4 -->
-      <rect class="yr" x="18" y="1472" width="640" height="545" rx="12" />
+      <rect class="yr" x="18" y="1472" width="640" height="430" rx="12" />
       <text class="ylbl" x="30" y="1491">Year 4</text>
-      <rect class="sm" x="26" y="1498" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="1498" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="1515">Semester 1</text>
       <g class="c">
         <rect x="38" y="1520" width="130" height="42" rx="6" /><text class="th" x="103" y="1537" text-anchor="middle"
@@ -682,7 +683,7 @@
           dominant-baseline="central">CSE452 Distributed Sys.</text><text class="ts" x="567" y="1553"
           text-anchor="middle" dominant-baseline="central">elective</text>
       </g>
-      <rect class="sm" x="26" y="1622" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="1622" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="1639">Semester 2</text>
       <g class="c">
         <rect x="38" y="1644" width="130" height="42" rx="6" /><text class="th" x="103" y="1661" text-anchor="middle"
@@ -704,7 +705,7 @@
           dominant-baseline="central">CSE473 Network Security</text><text class="ts" x="573" y="1677"
           text-anchor="middle" dominant-baseline="central">elective</text>
       </g>
-      <rect class="sm" x="26" y="1746" width="622" height="116" rx="8" />
+      <rect class="sm" x="26" y="1746" width="622" height="100" rx="8" />
       <text class="lbl" x="38" y="1763">Semester 3</text>
       <g class="c">
         <rect x="38" y="1768" width="130" height="42" rx="6" /><text class="th" x="103" y="1785" text-anchor="middle"
@@ -721,22 +722,6 @@
           dominant-baseline="central">CSE445 Computer Vision</text><text class="ts" x="414" y="1801"
           text-anchor="middle" dominant-baseline="central">elective</text>
       </g>
-      <!-- LEGEND -->
-      <rect class="sm" x="26" y="1886" width="622" height="120" rx="8" />
-      <text class="lbl" x="38" y="1904">Legend</text>
-      <rect x="38" y="1912" width="13" height="13" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5" /><text
-        class="lbl" x="57" y="1923">Core CSE</text>
-      <rect x="140" y="1912" width="13" height="13" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5" /><text
-        class="lbl" x="159" y="1923">Math / English</text>
-      <rect x="262" y="1912" width="13" height="13" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5" /><text
-        class="lbl" x="281" y="1923">Gen. / Science</text>
-      <rect x="384" y="1912" width="13" height="13" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" /><text
-        class="lbl" x="403" y="1923">AI / ML</text>
-      <rect x="450" y="1912" width="13" height="13" rx="3" fill="#FBEAF0" stroke="#993556" stroke-width="0.5" /><text
-        class="lbl" x="469" y="1923">Security</text>
-      <rect x="530" y="1912" width="13" height="13" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5" /><text
-        class="lbl" x="549" y="1923">Capstone</text>
-      <text class="lbl" x="38" y="1948">(lab) = includes laboratory component.</text>
     </svg>
   </div>
 
@@ -1008,9 +993,6 @@
         </div>
       </div>
     </div>
-
-    <p style="font-size:10px;color:#888;margin-top:16px;font-family:'IBM Plex Mono',monospace;">(lab) = includes
-      laboratory component.</p>
   </div>
 
 
