@@ -138,11 +138,11 @@
       background: var(--amber-bg);
     }
 
-    .legend-item[data-cat="s"].active {
+    .legend-item[data-cat="c"].active {
       background: var(--pink-bg);
     }
 
-    .legend-item[data-cat="c"].active {
+    .legend-item[data-cat="h"].active {
       background: var(--coral-bg);
     }
 
@@ -300,29 +300,29 @@
       color: var(--amber-sub);
     }
 
-    .course.c {
+    .course.h {
       background: var(--coral-bg);
       border-color: var(--coral-border);
     }
 
-    .course.c .course-name {
+    .course.h .course-name {
       color: var(--coral-head);
     }
 
-    .course.c .course-meta {
+    .course.h .course-meta {
       color: var(--coral-sub);
     }
 
-    .course.s {
+    .course.c {
       background: var(--pink-bg);
       border-color: var(--pink-border);
     }
 
-    .course.s .course-name {
+    .course.c .course-name {
       color: var(--pink-head);
     }
 
-    .course.s .course-meta {
+    .course.c .course-meta {
       color: var(--pink-sub);
     }
 
@@ -359,14 +359,14 @@
     <div class="legend-item" data-cat="g">
       <div class="legend-dot" style="background:var(--gray-bg);border:1px solid var(--gray-border)"></div>Gen. / Science
     </div>
+    <div class="legend-item" data-cat="h">
+      <div class="legend-dot" style="background:var(--coral-bg);border:1px solid var(--coral-border)"></div>Hardware
+    </div>
     <div class="legend-item" data-cat="a">
       <div class="legend-dot" style="background:var(--amber-bg);border:1px solid var(--amber-border)"></div>AI / ML
     </div>
-    <div class="legend-item" data-cat="s">
-      <div class="legend-dot" style="background:var(--pink-bg);border:1px solid var(--pink-border)"></div>Security
-    </div>
     <div class="legend-item" data-cat="c">
-      <div class="legend-dot" style="background:var(--coral-bg);border:1px solid var(--coral-border)"></div>Capstone
+      <div class="legend-dot" style="background:var(--pink-bg);border:1px solid var(--pink-border)"></div>Capstone
     </div>
   </div>
 
@@ -378,7 +378,7 @@
       <div class="year-label">Year 1</div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
+        <div class="sem-label">Trimester 1</div>
         <div class="courses">
           <div class="course t">
             <div class="course-name">ENG101 Basic English</div>
@@ -396,7 +396,7 @@
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
+        <div class="sem-label">Trimester 2</div>
         <div class="courses">
           <div class="course t">
             <div class="course-name">ENG102 Comp. &amp; Comm.</div>
@@ -418,7 +418,7 @@
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
+        <div class="sem-label">Trimester 3</div>
         <div class="courses">
           <div class="course g">
             <div class="course-name">PHY109 Eng. Physics I</div>
@@ -441,7 +441,7 @@
       <div class="year-label">Year 2</div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
+        <div class="sem-label">Trimester 1</div>
         <div class="courses">
           <div class="course g">
             <div class="course-name">GEN226 Emergence of BD</div>
@@ -463,7 +463,7 @@
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
+        <div class="sem-label">Trimester 2</div>
         <div class="courses">
           <div class="course g">
             <div class="course-name">SOC317 Sociology S&amp;T</div>
@@ -485,7 +485,7 @@
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
+        <div class="sem-label">Trimester 3</div>
         <div class="courses">
           <div class="course g">
             <div class="course-name">GEN210 International Rel.</div>
@@ -508,7 +508,7 @@
       <div class="year-label">Year 3</div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
+        <div class="sem-label">Trimester 1</div>
         <div class="courses">
           <div class="course g">
             <div class="course-name">BUS321 Business for Eng.</div>
@@ -519,43 +519,43 @@
             <div class="course-meta">4.5 cr (lab)</div>
           </div>
           <div class="course p">
-            <div class="course-name">CSE302 Database Systems</div>
-            <div class="course-meta">4.5 cr (lab)</div>
+            <div class="course-name">CSE345 Digital Logic Design</div>
+            <div class="course-meta">4 cr (lab)</div>
           </div>
         </div>
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
+        <div class="sem-label">Trimester 2</div>
         <div class="courses">
           <div class="course p">
-            <div class="course-name">CSE345 Digital Logic Design</div>
-            <div class="course-meta">4 cr (lab)</div>
+            <div class="course-name">CSE302 Database Systems</div>
+            <div class="course-meta">4.5 cr (lab)</div>
           </div>
           <div class="course p">
-            <div class="course-name">CSE347 IS Analysis &amp; Design</div>
-            <div class="course-meta">4 cr (lab)</div>
+            <div class="course-name">CSE360 Comp. Arch.</div>
+            <div class="course-meta">3 cr</div>
           </div>
-          <div class="course t">
-            <div class="course-name">CSE303 Stats for Data Sci.</div>
+          <div class="course h">
+            <div class="course-name">CSE355 Digital System Design</div>
             <div class="course-meta">elective</div>
           </div>
         </div>
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
+        <div class="sem-label">Trimester 3</div>
         <div class="courses">
           <div class="course p">
-            <div class="course-name">CSE360 Comp. Arch.</div>
-            <div class="course-meta">3 cr</div>
+            <div class="course-name">CSE347 IS Analysis &amp; Design</div>
+            <div class="course-meta">4 cr (lab)</div>
           </div>
           <div class="course p">
             <div class="course-name">CSE405 Networks</div>
             <div class="course-meta">4 cr (lab)</div>
           </div>
-          <div class="course a">
-            <div class="course-name">CSE366 Art. Intelligence</div>
+          <div class="course h">
+            <div class="course-name">CSE442 Microprcsr &amp; Microcntrlr</div>
             <div class="course-meta">elective</div>
           </div>
         </div>
@@ -567,7 +567,7 @@
       <div class="year-label">Year 4</div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 1</div>
+        <div class="sem-label">Trimester 1</div>
         <div class="courses">
           <div class="course c">
             <div class="course-name">CSE400 Capstone I</div>
@@ -577,19 +577,19 @@
             <div class="course-name">CSE407 Green Computing</div>
             <div class="course-meta">3 cr</div>
           </div>
-          <div class="course a">
-            <div class="course-name">CSE475 Machine Learning</div>
+          <div class="course h">
+            <div class="course-name">CSE494 Embedded Systems</div>
             <div class="course-meta">elective</div>
           </div>
-          <div class="course p">
-            <div class="course-name">CSE452 Distributed Sys.</div>
+          <div class="course a">
+            <div class="course-name">CSE366 Artificial Intelligence</div>
             <div class="course-meta">elective</div>
           </div>
         </div>
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 2</div>
+        <div class="sem-label">Trimester 2</div>
         <div class="courses">
           <div class="course c">
             <div class="course-name">CSE400 Capstone II</div>
@@ -599,19 +599,19 @@
             <div class="course-name">CSE487 Cyber Sec. &amp; Law</div>
             <div class="course-meta">3 cr</div>
           </div>
-          <div class="course a">
-            <div class="course-name">CSE474 Pattern Recognition</div>
+          <div class="course h">
+            <div class="course-name">CSE491 VLSI Design</div>
             <div class="course-meta">elective</div>
           </div>
-          <div class="course s">
-            <div class="course-name">CSE473 Network Security</div>
+          <div class="course a">
+            <div class="course-name">CSE475 Machine Learning</div>
             <div class="course-meta">elective</div>
           </div>
         </div>
       </div>
 
       <div class="sem-block">
-        <div class="sem-label">Semester 3</div>
+        <div class="sem-label">Trimester 3</div>
         <div class="courses">
           <div class="course c">
             <div class="course-name">CSE400 Capstone III</div>
@@ -621,14 +621,9 @@
             <div class="course-name">CSE495 IT PM &amp; Entrep.</div>
             <div class="course-meta">3 cr</div>
           </div>
-          <div class="course a">
-            <div class="course-name">CSE445 Computer Vision</div>
+          <div class="course h">
+            <div class="course-name">CSE492 Robotics</div>
             <div class="course-meta">elective</div>
-          </div>
-           <div class="course s">
-            <div class="course-name">CSE460 Cryptography</div>
-            <div class="course-meta">elective</div>
-          </div>
         </div>
       </div>
     </div>
@@ -644,7 +639,9 @@
         ['ENG102', 'GEN226'], ['MAT102', 'MAT205'], ['CSE110', 'CSE207'],
         ['CSE209', 'CSE251'], ['ENG102', 'GEN210'], ['MAT205', 'PHY209'],
         ['CSE207', 'CSE325'], ['ENG102', 'BUS321'], ['CSE207', 'CSE246'],
-        ['CSE106', 'CSE302'], ['CSE251', 'CSE345'], ['CSE302', 'CSE347'],
+        ['CSE106', 'CSE302'], ['CSE251', 'CSE345'], ['CSE345', 'CSE355'],
+        ['CSE302', 'CSE347'], ['CSE360', 'CSE442'], ['CSE442', 'CSE494'],
+        ['CSE345', 'CSE491'], ['CSE366', 'CSE492'],
         ['STA102', 'CSE303'], ['CSE325', 'CSE360'], ['CSE246', 'CSE405'],
         ['CSE246', 'CSE366'], ['CSE246', 'CSE460'], ['CSE405', 'CSE407'],
         ['CSE366', 'CSE475'], ['CSE325', 'CSE452'], ['CSE405', 'CSE487'],
@@ -702,7 +699,7 @@
       }
 
       function getCatOfNode(el) {
-        for (const c of ['p', 't', 'g', 'a', 'c', 's']) {
+        for (const c of ['p', 't', 'g', 'a', 'c', 'h']) {
           if (el.classList.contains(c)) return c;
         }
         return null;
