@@ -1,798 +1,877 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jhd Course Flowchart</title>
+    <link rel="icon" type="image/png" href="favicon_192.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jhd Course Flowchart</title>
-  <link rel="icon" type="image/png" href="favicon_192.png">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
-
-    :root {
-      --purple-bg: #EEEDFE;
-      --purple-border: #534AB7;
-      --purple-head: #3C3489;
-      --purple-sub: #534AB7;
-      --teal-bg: #E1F5EE;
-      --teal-border: #0F6E56;
-      --teal-head: #085041;
-      --teal-sub: #0F6E56;
-      --gray-bg: #F1EFE8;
-      --gray-border: #5F5E5A;
-      --gray-head: #444441;
-      --gray-sub: #5F5E5A;
-      --amber-bg: #FAEEDA;
-      --amber-border: #854F0B;
-      --amber-head: #633806;
-      --amber-sub: #854F0B;
-      --coral-bg: #FAECE7;
-      --coral-border: #993C1D;
-      --coral-head: #712B13;
-      --coral-sub: #993C1D;
-      --pink-bg: #FBEAF0;
-      --pink-border: #993556;
-      --pink-head: #72243E;
-      --pink-sub: #993556;
-      --page-bg: #F7F6F2;
-      --year-border: #c8c6bc;
-      --sem-border: #dedad2;
-      --text-dark: #1a1a18;
-      --text-mid: #44443f;
-      --ff: 'IBM Plex Sans', sans-serif;
-      --fm: 'IBM Plex Mono', monospace;
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: var(--ff);
-      background: var(--page-bg);
-      color: var(--text-dark);
-      min-height: 100vh;
-    }
-
-    /* ── HEADER ─────────────────────────────────────── */
-    header {
-      padding: 20px 16px 16px;
-      border-bottom: 1px solid var(--year-border);
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    header h1 {
-      font-size: clamp(18px, 10vw, 24px);
-      font-weight: 600;
-      letter-spacing: -0.3px;
-      color: var(--text-dark);
-    }
-
-    header span {
-      font-family: var(--fm);
-      font-size: 13px;
-      color: var(--text-mid);
-      opacity: .7;
-    }
-
-    /* ── LEGEND ─────────────────────────────────────── */
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 14px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--sem-border);
-      font-size: 14px;
-      color: var(--text-mid);
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      border-radius: 6px;
-      padding: 3px 7px 3px 3px;
-      transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
-      user-select: none;
-    }
-
-    .legend-dot {
-      width: 17px;
-      height: 17px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-
-    .legend-item.active {
-      opacity: 1;
-      transform: scale(1.08);
-      font-weight: 600;
-    }
-
-    .legend-item.dim {
-      opacity: 0.2;
-    }
-
-    /* Subtle background tint per category when active */
-    .legend-item[data-cat="p"].active {
-      background: var(--purple-bg);
-    }
-
-    .legend-item[data-cat="t"].active {
-      background: var(--teal-bg);
-    }
-
-    .legend-item[data-cat="g"].active {
-      background: var(--gray-bg);
-    }
-
-    .legend-item[data-cat="a"].active {
-      background: var(--amber-bg);
-    }
-
-    .legend-item[data-cat="s"].active {
-      background: var(--pink-bg);
-    }
-
-    .legend-item[data-cat="c"].active {
-      background: var(--coral-bg);
-    }
-
-    /* ── SWIMLANE CARD VIEW ──────────────────────────── */
-    .card-view {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 12px 32px;
-      gap: 12px;
-    }
-
-    /* On wider screens: horizontal swimlane row */
-    @media (min-width: 720px) {
-      .card-view {
-        flex-direction: row;
-        align-items: stretch;
-        padding: 16px 16px 32px;
-        overflow-x: auto;
+      :root {
+        --purple-bg: #eeedfe;
+        --purple-border: #534ab7;
+        --purple-head: #3c3489;
+        --purple-sub: #534ab7;
+        --teal-bg: #e1f5ee;
+        --teal-border: #0f6e56;
+        --teal-head: #085041;
+        --teal-sub: #0f6e56;
+        --gray-bg: #f1efe8;
+        --gray-border: #5f5e5a;
+        --gray-head: #444441;
+        --gray-sub: #5f5e5a;
+        --amber-bg: #faeeda;
+        --amber-border: #854f0b;
+        --amber-head: #633806;
+        --amber-sub: #854f0b;
+        --coral-bg: #faece7;
+        --coral-border: #993c1d;
+        --coral-head: #712b13;
+        --coral-sub: #993c1d;
+        --pink-bg: #fbeaf0;
+        --pink-border: #993556;
+        --pink-head: #72243e;
+        --pink-sub: #993556;
+        --page-bg: #f7f6f2;
+        --year-border: #c8c6bc;
+        --sem-border: #dedad2;
+        --text-dark: #1a1a18;
+        --text-mid: #44443f;
+        --ff: "IBM Plex Sans", sans-serif;
+        --fm: "IBM Plex Mono", monospace;
       }
 
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--ff);
+        background: var(--page-bg);
+        color: var(--text-dark);
+        min-height: 100vh;
+      }
+
+      /* ── HEADER ─────────────────────────────────────── */
       header {
-        padding: 24px 48px 18px;
+        padding: 20px 16px 16px;
+        border-bottom: 1px solid var(--year-border);
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
       }
 
+      header h1 {
+        font-size: clamp(18px, 10vw, 24px);
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        color: var(--text-dark);
+      }
+
+      header span {
+        font-family: var(--fm);
+        font-size: 13px;
+        color: var(--text-mid);
+        opacity: 0.7;
+      }
+
+      /* ── LEGEND ─────────────────────────────────────── */
       .legend {
-        padding: 12px 46px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--sem-border);
+        font-size: 14px;
+        color: var(--text-mid);
       }
-    }
 
-    /* Year swimlane column */
-    .year-block {
-      border: 1px dashed var(--year-border);
-      border-radius: 12px;
-      overflow: hidden;
-      /* Mobile: full width */
-      width: 100%;
-    }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        border-radius: 6px;
+        padding: 3px 7px 3px 3px;
+        transition:
+          opacity 0.18s ease,
+          transform 0.18s ease,
+          background 0.18s ease;
+        user-select: none;
+      }
 
-    @media (min-width: 720px) {
+      .legend-dot {
+        width: 17px;
+        height: 17px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+
+      .legend-item.active {
+        opacity: 1;
+        transform: scale(1.08);
+        font-weight: 600;
+      }
+
+      .legend-item.dim {
+        opacity: 0.2;
+      }
+
+      /* Subtle background tint per category when active */
+      .legend-item[data-cat="p"].active {
+        background: var(--purple-bg);
+      }
+
+      .legend-item[data-cat="t"].active {
+        background: var(--teal-bg);
+      }
+
+      .legend-item[data-cat="g"].active {
+        background: var(--gray-bg);
+      }
+
+      .legend-item[data-cat="a"].active {
+        background: var(--amber-bg);
+      }
+
+      .legend-item[data-cat="c"].active {
+        background: var(--pink-bg);
+      }
+
+      .legend-item[data-cat="s"].active {
+        background: var(--coral-bg);
+      }
+
+      /* ── SWIMLANE CARD VIEW ──────────────────────────── */
+      .card-view {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 12px 32px;
+        gap: 12px;
+      }
+
+      /* On wider screens: horizontal swimlane row */
+      @media (min-width: 720px) {
+        .card-view {
+          flex-direction: row;
+          align-items: stretch;
+          padding: 16px 16px 32px;
+          overflow-x: auto;
+        }
+
+        header {
+          padding: 24px 48px 18px;
+        }
+
+        .legend {
+          padding: 12px 46px;
+        }
+      }
+
+      /* Year swimlane column */
       .year-block {
-        /* Equal-width columns that grow to fill screen */
-        flex: 1 1 0;
-        min-width: 220px;
-        width: auto;
-      }
-    }
-
-    .year-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-mid);
-      padding: 10px 14px 6px;
-      letter-spacing: .3px;
-      text-transform: uppercase;
-      font-family: var(--fm);
-    }
-
-    /* Semester section */
-    .sem-block {
-      border-top: 1px solid var(--sem-border);
-      padding: 10px 12px 12px;
-    }
-
-    .sem-label {
-      font-size: 10px;
-      color: #888;
-      font-family: var(--fm);
-      margin-bottom: 8px;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-
-    /* Course grid — single column inside swimlane */
-    .courses {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 7px;
-    }
-
-    /* Course card */
-    .course {
-      border-radius: 7px;
-      padding: 8px 10px;
-      border-width: 1px;
-      border-style: solid;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      cursor: pointer;
-      transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .course-name {
-      font-size: 11.5px;
-      font-weight: 500;
-      line-height: 1.35;
-    }
-
-    .course-meta {
-      font-family: var(--fm);
-      font-size: 9.5px;
-      opacity: .8;
-    }
-
-    /* Category colours */
-    .course.p {
-      background: var(--purple-bg);
-      border-color: var(--purple-border);
-    }
-
-    .course.p .course-name {
-      color: var(--purple-head);
-    }
-
-    .course.p .course-meta {
-      color: var(--purple-sub);
-    }
-
-    .course.t {
-      background: var(--teal-bg);
-      border-color: var(--teal-border);
-    }
-
-    .course.t .course-name {
-      color: var(--teal-head);
-    }
-
-    .course.t .course-meta {
-      color: var(--teal-sub);
-    }
-
-    .course.g {
-      background: var(--gray-bg);
-      border-color: var(--gray-border);
-    }
-
-    .course.g .course-name {
-      color: var(--gray-head);
-    }
-
-    .course.g .course-meta {
-      color: var(--gray-sub);
-    }
-
-    .course.a {
-      background: var(--amber-bg);
-      border-color: var(--amber-border);
-    }
-
-    .course.a .course-name {
-      color: var(--amber-head);
-    }
-
-    .course.a .course-meta {
-      color: var(--amber-sub);
-    }
-
-    .course.c {
-      background: var(--coral-bg);
-      border-color: var(--coral-border);
-    }
-
-    .course.c .course-name {
-      color: var(--coral-head);
-    }
-
-    .course.c .course-meta {
-      color: var(--coral-sub);
-    }
-
-    .course.s {
-      background: var(--pink-bg);
-      border-color: var(--pink-border);
-    }
-
-    .course.s .course-name {
-      color: var(--pink-head);
-    }
-
-    .course.s .course-meta {
-      color: var(--pink-sub);
-    }
-
-    /* ── HOVER / HIGHLIGHT INTERACTION ──────────────── */
-    .course.active {
-      opacity: 1;
-      transform: scale(1.05);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
-      z-index: 2;
-      position: relative;
-    }
-
-    .course.dim {
-      opacity: 0.15;
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <h1>Jhd Course Flowchart</h1>
-    <span>B.Sc. in Computer Science &amp; Engineering</span>
-  </header>
-
-  <!-- Legend -->
-  <div class="legend">
-    <div class="legend-item" data-cat="p">
-      <div class="legend-dot" style="background:var(--purple-bg);border:1px solid var(--purple-border)"></div>Core CSE
-    </div>
-    <div class="legend-item" data-cat="t">
-      <div class="legend-dot" style="background:var(--teal-bg);border:1px solid var(--teal-border)"></div>Math / English
-    </div>
-    <div class="legend-item" data-cat="g">
-      <div class="legend-dot" style="background:var(--gray-bg);border:1px solid var(--gray-border)"></div>Gen. / Science
-    </div>
-    <div class="legend-item" data-cat="a">
-      <div class="legend-dot" style="background:var(--amber-bg);border:1px solid var(--amber-border)"></div>AI / ML
-    </div>
-    <div class="legend-item" data-cat="s">
-      <div class="legend-dot" style="background:var(--pink-bg);border:1px solid var(--pink-border)"></div>Security
-    </div>
-    <div class="legend-item" data-cat="c">
-      <div class="legend-dot" style="background:var(--coral-bg);border:1px solid var(--coral-border)"></div>Capstone
-    </div>
-  </div>
-
-  <!-- ── SWIMLANE CARD VIEW ─────────────────────────── -->
-  <div class="card-view">
-
-    <!-- YEAR 1 -->
-    <div class="year-block">
-      <div class="year-label">Year 1</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 1</div>
-        <div class="courses">
-          <div class="course t">
-            <div class="course-name">ENG101 Basic English</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT101 Diff. &amp; Int. Calculus</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE103 Structured Prog.</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 2</div>
-        <div class="courses">
-          <div class="course t">
-            <div class="course-name">ENG102 Comp. &amp; Comm.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT102 Diff. Eqn.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE106 Discrete Math</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">CHE109 Eng. Chemistry</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 3</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">PHY109 Eng. Physics I</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT104 Coord. Geom. &amp; Vec.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE110 OOP</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- YEAR 2 -->
-    <div class="year-block">
-      <div class="year-label">Year 2</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 1</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">GEN226 Emergence of BD</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">STA102 Stats &amp; Prob.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE200 CAE Drawing</div>
-            <div class="course-meta">1 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE209 Elec. Circuits</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 2</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">SOC317 Sociology S&amp;T</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">MAT205 Lin. Alg. &amp; Cmplx.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE207 Data Structures</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE251 Electronic Ckt.</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 3</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">GEN210 International Rel.</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">PHY209 Eng. Physics II</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE325 Operating Systems</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- YEAR 3 -->
-    <div class="year-block">
-      <div class="year-label">Year 3</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 1</div>
-        <div class="courses">
-          <div class="course g">
-            <div class="course-name">BUS321 Business for Eng.</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE246 Algorithms</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE302 Database Systems</div>
-            <div class="course-meta">4.5 cr (lab)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 2</div>
-        <div class="courses">
-          <div class="course p">
-            <div class="course-name">CSE345 Digital Logic Design</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE347 IS Analysis &amp; Design</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course t">
-            <div class="course-name">CSE303 Stats for Data Sci.</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 3</div>
-        <div class="courses">
-          <div class="course p">
-            <div class="course-name">CSE360 Comp. Arch.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE405 Networks</div>
-            <div class="course-meta">4 cr (lab)</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE366 Art. Intelligence</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- YEAR 4 -->
-    <div class="year-block">
-      <div class="year-label">Year 4</div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 1</div>
-        <div class="courses">
-          <div class="course c">
-            <div class="course-name">CSE400 Capstone I</div>
-            <div class="course-meta">1 cr</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">CSE407 Green Computing</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course p">
-            <div class="course-name">CSE452 Distributed Sys.</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE475 Machine Learning</div>
-            <div class="course-meta">elective</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 2</div>
-        <div class="courses">
-          <div class="course c">
-            <div class="course-name">CSE400 Capstone II</div>
-            <div class="course-meta">2 cr</div>
-          </div>
-          <div class="course s">
-            <div class="course-name">CSE487 Cyber Sec. &amp; Law</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE477 Data Mining</div>
-            <div class="course-meta">elective</div>
-          </div>
-         
-        </div>
-      </div>
-
-      <div class="sem-block">
-        <div class="sem-label">Trimester 3</div>
-        <div class="courses">
-          <div class="course c">
-            <div class="course-name">CSE400 Capstone III</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-          <div class="course g">
-            <div class="course-name">CSE495 IT PM &amp; Entrep.</div>
-            <div class="course-meta">3 cr</div>
-          </div>
-           <div class="course g">
-            <div class="course-name">CSE406 IoT</div>
-            <div class="course-meta">elective</div>
-          </div>
-          <div class="course a">
-            <div class="course-name">CSE474 Pattern Recognition</div>
-            <div class="course-meta">elective</div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    (function () {
-      /* ── 1. PREREQUISITE DATA ─────────────────────────── */
-      const edges = [
-        ['ENG101', 'ENG102'], ['MAT101', 'MAT102'], ['CSE103', 'CSE106'],
-        ['MAT102', 'PHY109'], ['MAT101', 'MAT104'], ['CSE106', 'CSE110'],
-        ['ENG102', 'GEN226'], ['MAT102', 'MAT205'], ['CSE110', 'CSE207'],
-        ['CSE209', 'CSE251'], ['ENG102', 'GEN210'], ['MAT205', 'PHY209'],
-        ['CSE207', 'CSE325'], ['ENG102', 'BUS321'], ['CSE207', 'CSE246'],
-        ['CSE106', 'CSE302'], ['CSE251', 'CSE345'], ['CSE302', 'CSE347'],
-        ['STA102', 'CSE303'], ['CSE325', 'CSE360'], ['CSE246', 'CSE405'],
-        ['CSE246', 'CSE366'], ['CSE405', 'CSE407'],
-        ['CSE366', 'CSE475'], ['CSE325', 'CSE452'], ['CSE405', 'CSE487'],
-        ['CSE366', 'CSE474'], ['CSE405', 'CSE406'], ['CSE347', 'CSE495'],
-        ['CSE366', 'CSE477']
-      ];
-
-      /* pre → list of posts | post → list of pres */
-      const preMap = {};
-      const postMap = {};
-      edges.forEach(([pre, post]) => {
-        (preMap[pre] = preMap[pre] || []).push(post);
-        (postMap[post] = postMap[post] || []).push(pre);
-      });
-
-      /* ── 2. DOM SCAN & data-id TAGGING ────────────────── */
-      document.querySelectorAll('.course').forEach(card => {
-        const nameEl = card.querySelector('.course-name');
-        if (!nameEl) return;
-        const m = nameEl.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
-        if (m) card.dataset.id = m[1];
-      });
-
-      /* ── 3. ID → element(s) lookup map ────────────────── */
-      const nodeMap = {};
-      document.querySelectorAll('[data-id]').forEach(el => {
-        const id = el.dataset.id;
-        (nodeMap[id] = nodeMap[id] || []).push(el);
-      });
-
-      /* ── 4. RECURSIVE TRAVERSAL ───────────────────────── */
-      function getAllAncestors(id, visited = new Set()) {
-        (postMap[id] || []).forEach(pre => {
-          if (!visited.has(pre)) { visited.add(pre); getAllAncestors(pre, visited); }
-        });
-        return visited;
-      }
-      function getAllDescendants(id, visited = new Set()) {
-        (preMap[id] || []).forEach(post => {
-          if (!visited.has(post)) { visited.add(post); getAllDescendants(post, visited); }
-        });
-        return visited;
+        border: 1px dashed var(--year-border);
+        border-radius: 12px;
+        overflow: hidden;
+        /* Mobile: full width */
+        width: 100%;
       }
 
-      /* ── 5. HIGHLIGHT / RESET HELPERS ─────────────────── */
-      function allNodes() {
-        return document.querySelectorAll('[data-id]');
-      }
-
-      const legendItems = document.querySelectorAll('.legend-item[data-cat]');
-
-      function resetAll() {
-        allNodes().forEach(el => { el.classList.remove('active', 'dim'); });
-        legendItems.forEach(li => li.classList.remove('active', 'dim'));
-      }
-
-      function getCatOfNode(el) {
-        for (const c of ['p', 't', 'g', 'a', 'c', 's']) {
-          if (el.classList.contains(c)) return c;
+      @media (min-width: 720px) {
+        .year-block {
+          /* Equal-width columns that grow to fill screen */
+          flex: 1 1 0;
+          min-width: 220px;
+          width: auto;
         }
-        return null;
       }
 
-      function highlight(hoveredId) {
-        const ancestors = getAllAncestors(hoveredId);
-        const descendants = getAllDescendants(hoveredId);
-        const related = new Set([hoveredId, ...ancestors, ...descendants]);
+      .year-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-mid);
+        padding: 10px 14px 6px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        font-family: var(--fm);
+      }
 
-        allNodes().forEach(el => {
+      /* Semester section */
+      .sem-block {
+        border-top: 1px solid var(--sem-border);
+        padding: 10px 12px 12px;
+      }
+
+      .sem-label {
+        font-size: 10px;
+        color: #888;
+        font-family: var(--fm);
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      /* Course grid — single column inside swimlane */
+      .courses {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      /* Course card */
+      .course {
+        border-radius: 7px;
+        padding: 8px 10px;
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        cursor: pointer;
+        transition:
+          opacity 0.18s ease,
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .course-name {
+        font-size: 11.5px;
+        font-weight: 500;
+        line-height: 1.35;
+      }
+
+      .course-meta {
+        font-family: var(--fm);
+        font-size: 9.5px;
+        opacity: 0.8;
+      }
+
+      /* Category colours */
+      .course.p {
+        background: var(--purple-bg);
+        border-color: var(--purple-border);
+      }
+
+      .course.p .course-name {
+        color: var(--purple-head);
+      }
+
+      .course.p .course-meta {
+        color: var(--purple-sub);
+      }
+
+      .course.t {
+        background: var(--teal-bg);
+        border-color: var(--teal-border);
+      }
+
+      .course.t .course-name {
+        color: var(--teal-head);
+      }
+
+      .course.t .course-meta {
+        color: var(--teal-sub);
+      }
+
+      .course.g {
+        background: var(--gray-bg);
+        border-color: var(--gray-border);
+      }
+
+      .course.g .course-name {
+        color: var(--gray-head);
+      }
+
+      .course.g .course-meta {
+        color: var(--gray-sub);
+      }
+
+      .course.a {
+        background: var(--amber-bg);
+        border-color: var(--amber-border);
+      }
+
+      .course.a .course-name {
+        color: var(--amber-head);
+      }
+
+      .course.a .course-meta {
+        color: var(--amber-sub);
+      }
+
+      .course.s {
+        background: var(--coral-bg);
+        border-color: var(--coral-border);
+      }
+
+      .course.s .course-name {
+        color: var(--coral-head);
+      }
+
+      .course.s .course-meta {
+        color: var(--coral-sub);
+      }
+
+      .course.c {
+        background: var(--pink-bg);
+        border-color: var(--pink-border);
+      }
+
+      .course.c .course-name {
+        color: var(--pink-head);
+      }
+
+      .course.c .course-meta {
+        color: var(--pink-sub);
+      }
+
+      /* ── HOVER / HIGHLIGHT INTERACTION ──────────────── */
+      .course.active {
+        opacity: 1;
+        transform: scale(1.05);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+        z-index: 2;
+        position: relative;
+      }
+
+      .course.dim {
+        opacity: 0.15;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Jhd Course Flowchart</h1>
+      <span>B.Sc. in Computer Science &amp; Engineering</span>
+    </header>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item" data-cat="p">
+        <div
+          class="legend-dot"
+          style="
+            background: var(--purple-bg);
+            border: 1px solid var(--purple-border);
+          "
+        ></div>
+        Core CSE
+      </div>
+      <div class="legend-item" data-cat="t">
+        <div
+          class="legend-dot"
+          style="
+            background: var(--teal-bg);
+            border: 1px solid var(--teal-border);
+          "
+        ></div>
+        Math / English
+      </div>
+      <div class="legend-item" data-cat="g">
+        <div
+          class="legend-dot"
+          style="
+            background: var(--gray-bg);
+            border: 1px solid var(--gray-border);
+          "
+        ></div>
+        Gen. / Science
+      </div>
+      <div class="legend-item" data-cat="a">
+        <div
+          class="legend-dot"
+          style="
+            background: var(--amber-bg);
+            border: 1px solid var(--amber-border);
+          "
+        ></div>
+        AI / ML
+      </div>
+      <div class="legend-item" data-cat="s">
+        <div
+          class="legend-dot"
+          style="
+            background: var(--pink-bg);
+            border: 1px solid var(--pink-border);
+          "
+        ></div>
+        Security
+      </div>
+      <div class="legend-item" data-cat="c">
+        <div
+          class="legend-dot"
+          style="
+            background: var(--coral-bg);
+            border: 1px solid var(--coral-border);
+          "
+        ></div>
+        Capstone
+      </div>
+    </div>
+
+    <!-- ── SWIMLANE CARD VIEW ─────────────────────────── -->
+    <div class="card-view">
+      <!-- YEAR 1 -->
+      <div class="year-block">
+        <div class="year-label">Year 1</div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 1</div>
+          <div class="courses">
+            <div class="course t">
+              <div class="course-name">ENG101 Basic English</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course t">
+              <div class="course-name">MAT101 Diff. &amp; Int. Calculus</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE103 Structured Prog.</div>
+              <div class="course-meta">4.5 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 2</div>
+          <div class="courses">
+            <div class="course t">
+              <div class="course-name">ENG102 Comp. &amp; Comm.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course t">
+              <div class="course-name">MAT102 Diff. Eqn.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE106 Discrete Math</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course g">
+              <div class="course-name">CHE109 Eng. Chemistry</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 3</div>
+          <div class="courses">
+            <div class="course g">
+              <div class="course-name">GEN226 Emergence of BD</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course g">
+              <div class="course-name">PHY109 Eng. Physics I</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+            <div class="course t">
+              <div class="course-name">MAT104 Coord. Geom. &amp; Vec.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE110 OOP</div>
+              <div class="course-meta">4.5 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR 2 -->
+      <div class="year-block">
+        <div class="year-label">Year 2</div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 1</div>
+          <div class="courses">
+            <div class="course g">
+              <div class="course-name">SOC317 Sociology S&amp;T</div>
+              <div class="course-meta">elective</div>
+            </div>
+            <div class="course t">
+              <div class="course-name">MAT205 Lin. Alg. &amp; Cmplx.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE200 CAE Drawing</div>
+              <div class="course-meta">1 cr (lab)</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE209 Elec. Circuits</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 2</div>
+          <div class="courses">
+            <div class="course g">
+              <div class="course-name">BUS231 Business Comm.</div>
+              <div class="course-meta">elective</div>
+            </div>
+            <div class="course g">
+              <div class="course-name">PHY209 Eng. Physics II</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course t">
+              <div class="course-name">STA102 Stats &amp; Prob.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE207 Data Structures</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 3</div>
+          <div class="courses">
+            <div class="course g">
+              <div class="course-name">GEN210 International Rel.</div>
+              <div class="course-meta">elective</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE246 Algorithms</div>
+              <div class="course-meta">4.5 cr (lab)</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE251 Electronic Ckt.</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR 3 -->
+      <div class="year-block">
+        <div class="year-label">Year 3</div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 1</div>
+          <div class="courses">
+            <div class="course p">
+              <div class="course-name">CSE302 Database Systems</div>
+              <div class="course-meta">4.5 cr (lab)</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE325 Operating Systems</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE345 Digital Logic Design</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 2</div>
+          <div class="courses">
+            <div class="course p">
+              <div class="course-name">CSE347 IS Analysis &amp; Design</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE350 Data Communications</div>
+              <div class="course-meta">elective</div>
+            </div>
+            <div class="course t">
+              <div class="course-name">CSE303 Stats for Data Sci.</div>
+              <div class="course-meta">elective</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 3</div>
+          <div class="courses">
+            <div class="course p">
+              <div class="course-name">CSE360 Comp. Arch.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course p">
+              <div class="course-name">CSE405 Networks</div>
+              <div class="course-meta">4 cr (lab)</div>
+            </div>
+            <div class="course a">
+              <div class="course-name">CSE366 Art. Intelligence</div>
+              <div class="course-meta">elective</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR 4 -->
+      <div class="year-block">
+        <div class="year-label">Year 4</div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 1</div>
+          <div class="courses">
+            <div class="course c">
+              <div class="course-name">CSE400 Capstone I</div>
+              <div class="course-meta">1 cr</div>
+            </div>
+            <div class="course g">
+              <div class="course-name">CSE407 Green Computing</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course g">
+              <div class="course-name">CSE406 IoT</div>
+              <div class="course-meta">elective</div>
+            </div>
+            <div class="course a">
+              <div class="course-name">CSE475 Machine Learning</div>
+              <div class="course-meta">elective</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 2</div>
+          <div class="courses">
+            <div class="course c">
+              <div class="course-name">CSE400 Capstone II</div>
+              <div class="course-meta">2 cr</div>
+            </div>
+            <div class="course s">
+              <div class="course-name">CSE487 Cyber Sec. &amp; Law</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course a">
+              <div class="course-name">CSE477 Data Mining</div>
+              <div class="course-meta">elective</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sem-block">
+          <div class="sem-label">Trimester 3</div>
+          <div class="courses">
+            <div class="course c">
+              <div class="course-name">CSE400 Capstone III</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course g">
+              <div class="course-name">CSE495 IT PM &amp; Entrep.</div>
+              <div class="course-meta">3 cr</div>
+            </div>
+            <div class="course a">
+              <div class="course-name">CSE445 Computer Vision</div>
+              <div class="course-meta">elective</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        /* ── 1. PREREQUISITE DATA ─────────────────────────── */
+        const edges = [
+          ["ENG101", "ENG102"],
+          ["MAT101", "MAT102"],
+          ["CSE103", "CSE106"],
+          ["MAT102", "PHY109"],
+          ["MAT101", "MAT104"],
+          ["CSE106", "CSE110"],
+          ["ENG102", "GEN226"],
+          ["MAT102", "MAT205"],
+          ["CSE110", "CSE207"],
+          ["CSE209", "CSE251"],
+          ["ENG102", "GEN210"],
+          ["MAT205", "PHY209"],
+          ["CSE207", "CSE325"],
+          ["ENG102", "BUS321"],
+          ["CSE207", "CSE246"],
+          ["CSE106", "CSE302"],
+          ["CSE251", "CSE345"],
+          ["CSE302", "CSE347"],
+          ["CSE251", "CSE350"],
+          ["STA102", "CSE303"],
+          ["CSE325", "CSE360"],
+          ["CSE246", "CSE405"],
+          ["CSE246", "CSE366"],
+          ["CSE405", "CSE407"],
+          ["CSE366", "CSE475"],
+          ["CSE246", "CSE445"],
+          ["CSE405", "CSE487"],
+          ["CSE366", "CSE477"],
+          ["CSE405", "CSE406"],
+          ["CSE347", "CSE495"],
+        ];
+
+        /* pre → list of posts | post → list of pres */
+        const preMap = {};
+        const postMap = {};
+        edges.forEach(([pre, post]) => {
+          (preMap[pre] = preMap[pre] || []).push(post);
+          (postMap[post] = postMap[post] || []).push(pre);
+        });
+
+        /* ── 2. DOM SCAN & data-id TAGGING ────────────────── */
+        document.querySelectorAll(".course").forEach((card) => {
+          const nameEl = card.querySelector(".course-name");
+          if (!nameEl) return;
+          const m = nameEl.textContent.trim().match(/^([A-Z]+\d+[A-Z]*\d*)/);
+          if (m) card.dataset.id = m[1];
+        });
+
+        /* ── 3. ID → element(s) lookup map ────────────────── */
+        const nodeMap = {};
+        document.querySelectorAll("[data-id]").forEach((el) => {
           const id = el.dataset.id;
-          if (id === hoveredId) {
-            el.classList.add('active');
-            el.classList.remove('dim');
-          } else if (related.has(id)) {
-            el.classList.remove('active', 'dim');
-          } else {
-            el.classList.add('dim');
-            el.classList.remove('active');
-          }
+          (nodeMap[id] = nodeMap[id] || []).push(el);
         });
-      }
 
-      function highlightCategory(cat) {
-        allNodes().forEach(el => {
-          if (getCatOfNode(el) === cat) {
-            el.classList.add('active');
-            el.classList.remove('dim');
-          } else {
-            el.classList.add('dim');
-            el.classList.remove('active');
-          }
-        });
-        legendItems.forEach(li => {
-          if (li.dataset.cat === cat) {
-            li.classList.add('active');
-            li.classList.remove('dim');
-          } else {
-            li.classList.add('dim');
-            li.classList.remove('active');
-          }
-        });
-      }
-
-      /* ── 6. EVENT DELEGATION ───────────────────────────── */
-
-      // Card view hover (mouse)
-      const cardView = document.querySelector('.card-view');
-      if (cardView) {
-        cardView.addEventListener('mouseover', e => {
-          const card = e.target.closest('.course[data-id]');
-          if (card) highlight(card.dataset.id);
-        });
-        cardView.addEventListener('mouseleave', resetAll);
-      }
-
-      // Scroll-aware tap logic (touch)
-      let didScroll = false;
-      document.addEventListener('touchstart', () => {
-        didScroll = false;
-      }, { passive: true });
-      document.addEventListener('touchmove', () => {
-        didScroll = true;
-      }, { passive: true });
-      document.addEventListener('touchend', e => {
-        if (didScroll) return;
-        const card = e.target.closest('.course[data-id]');
-        const legendItem = e.target.closest('.legend-item[data-cat]');
-        if (card) {
-          if (card.classList.contains('active')) resetAll();
-          else highlight(card.dataset.id);
-        } else if (legendItem) {
-          if (legendItem.classList.contains('active')) resetAll();
-          else highlightCategory(legendItem.dataset.cat);
-        } else {
-          resetAll();
+        /* ── 4. RECURSIVE TRAVERSAL ───────────────────────── */
+        function getAllAncestors(id, visited = new Set()) {
+          (postMap[id] || []).forEach((pre) => {
+            if (!visited.has(pre)) {
+              visited.add(pre);
+              getAllAncestors(pre, visited);
+            }
+          });
+          return visited;
         }
-      }, { passive: true });
+        function getAllDescendants(id, visited = new Set()) {
+          (preMap[id] || []).forEach((post) => {
+            if (!visited.has(post)) {
+              visited.add(post);
+              getAllDescendants(post, visited);
+            }
+          });
+          return visited;
+        }
 
-      // Legend mouse hover
-      const legendEl = document.querySelector('.legend');
-      if (legendEl) {
-        legendEl.addEventListener('mouseover', e => {
-          const li = e.target.closest('.legend-item[data-cat]');
-          if (li) highlightCategory(li.dataset.cat);
-        });
-        legendEl.addEventListener('mouseleave', resetAll);
-      }
-    })();
-  </script>
+        /* ── 5. HIGHLIGHT / RESET HELPERS ─────────────────── */
+        function allNodes() {
+          return document.querySelectorAll("[data-id]");
+        }
 
-</body>
+        const legendItems = document.querySelectorAll(".legend-item[data-cat]");
 
+        function resetAll() {
+          allNodes().forEach((el) => {
+            el.classList.remove("active", "dim");
+          });
+          legendItems.forEach((li) => li.classList.remove("active", "dim"));
+        }
+
+        function getCatOfNode(el) {
+          for (const c of ["p", "t", "g", "a", "c", "s"]) {
+            if (el.classList.contains(c)) return c;
+          }
+          return null;
+        }
+
+        function highlight(hoveredId) {
+          const ancestors = getAllAncestors(hoveredId);
+          const descendants = getAllDescendants(hoveredId);
+          const related = new Set([hoveredId, ...ancestors, ...descendants]);
+
+          allNodes().forEach((el) => {
+            const id = el.dataset.id;
+            if (id === hoveredId) {
+              el.classList.add("active");
+              el.classList.remove("dim");
+            } else if (related.has(id)) {
+              el.classList.remove("active", "dim");
+            } else {
+              el.classList.add("dim");
+              el.classList.remove("active");
+            }
+          });
+        }
+
+        function highlightCategory(cat) {
+          allNodes().forEach((el) => {
+            if (getCatOfNode(el) === cat) {
+              el.classList.add("active");
+              el.classList.remove("dim");
+            } else {
+              el.classList.add("dim");
+              el.classList.remove("active");
+            }
+          });
+          legendItems.forEach((li) => {
+            if (li.dataset.cat === cat) {
+              li.classList.add("active");
+              li.classList.remove("dim");
+            } else {
+              li.classList.add("dim");
+              li.classList.remove("active");
+            }
+          });
+        }
+
+        /* ── 6. EVENT DELEGATION ───────────────────────────── */
+
+        // Card view hover (mouse)
+        const cardView = document.querySelector(".card-view");
+        if (cardView) {
+          cardView.addEventListener("mouseover", (e) => {
+            const card = e.target.closest(".course[data-id]");
+            if (card) highlight(card.dataset.id);
+          });
+          cardView.addEventListener("mouseleave", resetAll);
+        }
+
+        // Scroll-aware tap logic (touch)
+        let didScroll = false;
+        document.addEventListener(
+          "touchstart",
+          () => {
+            didScroll = false;
+          },
+          { passive: true },
+        );
+        document.addEventListener(
+          "touchmove",
+          () => {
+            didScroll = true;
+          },
+          { passive: true },
+        );
+        document.addEventListener(
+          "touchend",
+          (e) => {
+            if (didScroll) return;
+            const card = e.target.closest(".course[data-id]");
+            const legendItem = e.target.closest(".legend-item[data-cat]");
+            if (card) {
+              if (card.classList.contains("active")) resetAll();
+              else highlight(card.dataset.id);
+            } else if (legendItem) {
+              if (legendItem.classList.contains("active")) resetAll();
+              else highlightCategory(legendItem.dataset.cat);
+            } else {
+              resetAll();
+            }
+          },
+          { passive: true },
+        );
+
+        // Legend mouse hover
+        const legendEl = document.querySelector(".legend");
+        if (legendEl) {
+          legendEl.addEventListener("mouseover", (e) => {
+            const li = e.target.closest(".legend-item[data-cat]");
+            if (li) highlightCategory(li.dataset.cat);
+          });
+          legendEl.addEventListener("mouseleave", resetAll);
+        }
+      })();
+    </script>
+  </body>
 </html>
